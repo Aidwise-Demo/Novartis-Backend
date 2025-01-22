@@ -16,11 +16,11 @@ load_dotenv()
 def get_db_connection():
     try:
         return mysql.connector.connect(
-            host=os.getenv('host'),
-            user=os.getenv('user'),
-            password=os.getenv('password'),
-            database=os.getenv('database'),
-            port=os.getenv('port')
+            host=os.getenv('AIVENCLOUD_HOST_AIDWISE_DEMO'),
+            user=os.getenv('AIVENCLOUD_USERNAME_AIDWISE_DEMO'),
+            password=os.getenv('AIVENCLOUD_PASSWORD_AIDWISE_DEMO'),
+            database=os.getenv('AIVENCLOUD_DATABASE_AIDWISE_DEMO'),
+            port=os.getenv('AIVENCLOUD_PORT_AIDWISE_DEMO')
         )
     except mysql.connector.Error as err:
         print(f"Error: {err}")
@@ -42,6 +42,10 @@ app.add_middleware(
 async def db_connection_middleware(request: Request, call_next):
     response = await call_next(request)
     return response
+
+@app.get("/api/novartis/status")
+async def get_status():
+    return {"status": "OK"}
 
 @app.get("/api/novartis/nct_numbers")
 async def get_nct_number():
