@@ -17,4 +17,4 @@ EXPOSE 8000
 COPY . .
  
 # Command to run the FastAPI application with Uvicorn and Gunicorn
-CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:8000", "app:app", "--worker-class", "uvicorn.workers.UvicornWorker"]
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
