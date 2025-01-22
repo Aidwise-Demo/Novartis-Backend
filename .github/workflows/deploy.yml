@@ -51,9 +51,9 @@ jobs:
           echo "AIVENCLOUD_DATABASE_AIDWISE_DEMO=${{ secrets.AIVENCLOUD_DATABASE_AIDWISE_DEMO }}" >> .env
           echo "AIVENCLOUD_PORT_AIDWISE_DEMO=${{ secrets.AIVENCLOUD_PORT_AIDWISE_DEMO }}" >> .env
           echo "VPS_EXPOSED_PORT_AIDWISE_DEMO=${{ secrets.VPS_EXPOSED_PORT_AIDWISE_DEMO }}" >> .env
+          echo "OPENAI_API_KEY_MAYANK_AIDWISE_DEMO=${{ secrets.OPENAI_API_KEY_MAYANK_AIDWISE_DEMO }}" >> .env
+          echo "SEE_ENDPOINT_URL_AIDWISE_DEMO=${{ secrets.SEE_ENDPOINT_URL_AIDWISE_DEMO }}" >> .env
           echo "VPS_DIRECTORY_AIDWISE_DEMO=${{ env.VPS_DIRECTORY_AIDWISE_DEMO }}" >> .env
-          echo "OPENAI_API_KEY_MAYANK_AIDWISE_DEMO=${{ env.OPENAI_API_KEY_MAYANK_AIDWISE_DEMO }}" >> .env
-          echo "SEE_ENDPOINT_URL_AIDWISE_DEMO=${{ env.SEE_ENDPOINT_URL_AIDWISE_DEMO }}" >> .env
         EOF
 
     - name: Build and Run Docker Container on VPS

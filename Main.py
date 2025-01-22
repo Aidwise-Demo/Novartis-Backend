@@ -76,7 +76,7 @@ secondary_outcome = "NA"
 inclusion = "Male or female subjects, 18 years or older.~* Subjects diagnosed with either POAG or OHT in both eyes. The diagnosis of POAG must include evidence of:~  1. Optic disc or retinal nerve fiber layer structural abnormalities (substantiated by OCT); and/or~ 2..."
 exclusion = "NA"
 
-df = trials_extraction(NCT, study_title, primary_outcome, secondary_outcome, inclusion, exclusion)
+# df = trials_extraction(NCT, study_title, primary_outcome, secondary_outcome, inclusion, exclusion)
 
 
 
