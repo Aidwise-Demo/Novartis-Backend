@@ -1,0 +1,83 @@
+name: Deploy Novartis Backend API to VPS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  Deploy_to_VPS:
+    runs-on: ubuntu-latest
+    env:
+      VPS_DIRECTORY_AIDWISE_DEMO: ${{ secrets.VPS_DIRECTORY_AIDWISE_DEMO }}
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Set up Python environment
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12.2'
+
+    - name: Set up SSH
+      run: |
+        mkdir -p ~/.ssh
+        echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
+        chmod 600 ~/.ssh/id_ed25519
+      env:
+        SSH_PRIVATE_KEY: |
+          -----BEGIN OPENSSH PRIVATE KEY-----
+          ${{ secrets.SSH_PRIVATE_KEY_AIDWISE_DEMO }}
+          -----END OPENSSH PRIVATE KEY-----
+
+    - name: Deploy Code to VPS
+      run: |
+        ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USERNAME_AIDWISE_DEMO }}@${{ secrets.VPS_IPADDRESS_AIDWISE_DEMO }} << 'EOF'
+          if [ -d "${{ env.VPS_DIRECTORY_AIDWISE_DEMO }}" ]; then
+            rm -rf ${{ env.VPS_DIRECTORY_AIDWISE_DEMO }}
+          fi
+          mkdir -p ${{ env.VPS_DIRECTORY_AIDWISE_DEMO }}
+        EOF
+        rsync -avz --exclude='.git' ./ ${{ secrets.VPS_USERNAME_AIDWISE_DEMO }}@${{ secrets.VPS_IPADDRESS_AIDWISE_DEMO }}:${{ env.VPS_DIRECTORY_AIDWISE_DEMO }}/
+
+    - name: Set up Environment Variables on VPS
+      run: |
+        ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USERNAME_AIDWISE_DEMO }}@${{ secrets.VPS_IPADDRESS_AIDWISE_DEMO }} << 'EOF'
+          cd ${{ env.VPS_DIRECTORY_AIDWISE_DEMO }}
+          echo "AIVENCLOUD_HOST_AIDWISE_DEMO=${{ secrets.AIVENCLOUD_HOST_AIDWISE_DEMO }}" >> .env
+          echo "AIVENCLOUD_USERNAME_AIDWISE_DEMO=${{ secrets.AIVENCLOUD_USERNAME_AIDWISE_DEMO }}" >> .env
+          echo "AIVENCLOUD_PASSWORD_AIDWISE_DEMO=${{ secrets.AIVENCLOUD_PASSWORD_AIDWISE_DEMO }}" >> .env
+          echo "AIVENCLOUD_DATABASE_AIDWISE_DEMO=${{ secrets.AIVENCLOUD_DATABASE_AIDWISE_DEMO }}" >> .env
+          echo "AIVENCLOUD_PORT_AIDWISE_DEMO=${{ secrets.AIVENCLOUD_PORT_AIDWISE_DEMO }}" >> .env
+          echo "VPS_EXPOSED_PORT_AIDWISE_DEMO=${{ secrets.VPS_EXPOSED_PORT_AIDWISE_DEMO }}" >> .env
+          echo "VPS_DIRECTORY_AIDWISE_DEMO=${{ env.VPS_DIRECTORY_AIDWISE_DEMO }}" >> .env
+          echo "OPENAI_API_KEY_MAYANK_AIDWISE_DEMO=${{ env.OPENAI_API_KEY_MAYANK_AIDWISE_DEMO }}" >> .env
+          echo "SEE_ENDPOINT_URL_AIDWISE_DEMO=${{ env.SEE_ENDPOINT_URL_AIDWISE_DEMO }}" >> .env
+        EOF
+
+    - name: Build and Run Docker Container on VPS
+      run: |
+        ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USERNAME_AIDWISE_DEMO }}@${{ secrets.VPS_IPADDRESS_AIDWISE_DEMO }} << 'EOF'
+          cd ${{ env.VPS_DIRECTORY_AIDWISE_DEMO }}
+
+          if ! command -v docker-compose &> /dev/null; then
+            sudo curl -L "https://github.com/docker/compose/releases/download/$(curl -s https://api.github.com/repos/docker/compose/releases/latest | jq -r .tag_name)/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+            sudo chmod +x /usr/local/bin/docker-compose
+          fi
+
+          docker-compose down || { echo 'Docker Compose down failed'; exit 1; }
+          docker image prune -f
+
+          docker-compose --env-file .env up --build -d || { echo 'Docker Compose up failed'; exit 1; }
+
+          sleep 4
+          if ! docker ps | grep -q "novartis-backend"; then
+            echo "Container failed to start or exited unexpectedly."
+            docker-compose logs
+            exit 1
+          fi
+
+          echo "The container is running!"
+          echo "The Docker container can be accessed on port ${{ secrets.VPS_EXPOSED_PORT_AIDWISE_DEMO }}."
+        EOF

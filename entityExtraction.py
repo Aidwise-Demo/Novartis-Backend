@@ -34,7 +34,7 @@ file_handler = logging.FileHandler('study_title_extraction.log')
 file_handler.setFormatter(formatter)
 logger.addHandler(file_handler)
 
-API_KEY = "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"
+API_KEY = os.getenv("OPENAI_API_KEY_MAYANK_AIDWISE_DEMO")
 
 def get_prompt(identifier):
     
@@ -125,7 +125,7 @@ def query_SEE_endpoint(extraction_config: dict, study_title: str = None, disease
     
     logger.info(f"Created temporary CSV at: {temp_csv_path}")
     
-    endpoint_url = "https://api.single-entity-extraction.aidwise.in/extract_entities"
+    endpoint_url = os.getenv("SEE_ENDPOINT_URL_AIDWISE_DEMO")
     
     # Prepare the files and form data
     files = {
@@ -173,11 +173,11 @@ def execute_query(query):
     logger.info(f"Executing query: {query}")
     try:
         connection = mysql.connector.connect(
-            user='avnadmin',
-            password='AVNS_ALRR0JRVl8p8-AqMf5A',
-            host='mysql-b94671a-aidwise-6ee1.l.aivencloud.com',
-            database='clinicalstudy',
-            port='13503'
+            host=os.getenv('AIVENCLOUD_HOST_AIDWISE_DEMO'),
+            user=os.getenv('AIVENCLOUD_USERNAME_AIDWISE_DEMO'),
+            password=os.getenv('AIVENCLOUD_PASSWORD_AIDWISE_DEMO'),
+            database=os.getenv('AIVENCLOUD_DATABASE_AIDWISE_DEMO'),
+            port=os.getenv('AIVENCLOUD_PORT_AIDWISE_DEMO')
         )
         
         cursor = connection.cursor(dictionary=True)
