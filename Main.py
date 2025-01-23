@@ -1,9 +1,15 @@
 import pandas as pd
 import math
-from entityExtraction import extract_study_title_entities
+import time  # For time measurement
+from entityExtraction import StudyTitle, LLM
 from phrasesTagging import tag_dataframe_with_phrases
 from embeddingGeneration import process_and_generate_embeddings
 from similarityCheck import find_top_similar_trials
+from aggregation import similarity_aggregation
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Function to replace None and nan with "NA"
 def replace_none_nan_with_na(value):
@@ -27,7 +33,10 @@ def trials_extraction(NCT_Number=None, Study_Title=None, Primary_Outcome_Measure
     Exclusion_Criteria = replace_none_nan_with_na(Exclusion_Criteria)
 
     # Extract entities
-    extracted_entities = extract_study_title_entities(Study_Title)
+    # extracted_entities = extract_study_title_entities(Study_Title)
+    llm = LLM(apiKey=os.getenv("OPENAI_API_KEY_MAYANK_AIDWISE_DEMO"))
+    studyTitleProcessor = StudyTitle(studyTitle=Study_Title, llm=llm)
+    extracted_entities = studyTitleProcessor.extractEntities()
     print(extracted_entities)
 
     # Replace nan with "NA" for all relevant fields in extracted entities
@@ -59,24 +68,30 @@ def trials_extraction(NCT_Number=None, Study_Title=None, Primary_Outcome_Measure
 
     embeddings_df = process_and_generate_embeddings(tagged_df)
 
-    embedding_columns = [
-        'Drug_embeddings', 'Trial_Phase_embeddings', 'Population_Segment_embeddings', 'Disease_Category_embeddings',
-        'Primary_Phrases_embeddings', 'Secondary_Phrases_embeddings', 'Inclusion_Phrases_embeddings',
-        'Exclusion_Phrases_embeddings', 'IAge_embeddings', 'IGender_embeddings', 'EAge_embeddings', 'EGender_embeddings'
-    ]
+    similarity_df = find_top_similar_trials(embeddings_df, disease)
 
-    similarity_df = find_top_similar_trials(embeddings_df, disease, embedding_columns)
+    final_similarity = similarity_aggregation(similarity_df)
 
-    print(similarity_df)
-
-NCT = "1235"
-study_title = "Safety and Efficacy of Deep Wave Trabeculoplasty (DWT) in Primary Ocular Hypertension"
-primary_outcome = "Percent decrease in IOP and change in dependence on IOP-lowering medications from baseline, 6 months|Intra-procedural and post-procedural adverse events, 6 months"
-secondary_outcome = "NA"
-inclusion = "Male or female subjects, 18 years or older.~* Subjects diagnosed with either POAG or OHT in both eyes. The diagnosis of POAG must include evidence of:~  1. Optic disc or retinal nerve fiber layer structural abnormalities (substantiated by OCT); and/or~ 2..."
-exclusion = "NA"
-
-# df = trials_extraction(NCT, study_title, primary_outcome, secondary_outcome, inclusion, exclusion)
+    # Save the DataFrame to a file
+    final_similarity.to_excel('output_file.xlsx', index=False)
+    print(final_similarity.columns)
+    return final_similarity
 
 
-
+# Timing the execution
+# if __name__ == "__main__":
+#     start_time = time.time()
+#
+#     NCT = "1235"
+#     study_title = "Safety and Efficacy of Deep Wave Trabeculoplasty (DWT) in Primary Ocular Hypertension"
+#     primary_outcome = "Percent decrease in IOP and change in dependence on IOP-lowering medications from baseline, 6 months|Intra-procedural and post-procedural adverse events, 6 months"
+#     secondary_outcome = "NA"
+#     inclusion = "Male or female subjects, 18 years or older.~* Subjects diagnosed with either POAG or OHT in both eyes. The diagnosis of POAG must include evidence of:~  1. Optic disc or retinal nerve fiber layer structural abnormalities (substantiated by OCT); and/or~ 2..."
+#     exclusion = "NA"
+#
+#     df = trials_extraction(NCT, study_title, primary_outcome, secondary_outcome, inclusion, exclusion)
+#
+#     end_time = time.time()
+#     print(f"Time taken to run trials_extraction: {end_time - start_time:.2f} seconds")
+#
+#     print(df)

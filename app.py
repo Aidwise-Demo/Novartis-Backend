@@ -16,11 +16,11 @@ load_dotenv()
 def get_db_connection():
     try:
         return mysql.connector.connect(
-            host=os.getenv('AIVENCLOUD_HOST_AIDWISE_DEMO'),
-            user=os.getenv('AIVENCLOUD_USERNAME_AIDWISE_DEMO'),
-            password=os.getenv('AIVENCLOUD_PASSWORD_AIDWISE_DEMO'),
-            database=os.getenv('AIVENCLOUD_DATABASE_AIDWISE_DEMO'),
-            port=os.getenv('AIVENCLOUD_PORT_AIDWISE_DEMO')
+            host=os.getenv('host'),
+            user=os.getenv('user'),
+            password=os.getenv('password'),
+            database=os.getenv('database'),
+            port=os.getenv('port')
         )
     except mysql.connector.Error as err:
         print(f"Error: {err}")
@@ -42,10 +42,6 @@ app.add_middleware(
 async def db_connection_middleware(request: Request, call_next):
     response = await call_next(request)
     return response
-
-@app.get("/api/novartis/status")
-async def get_status():
-    return {"status": "OK"}
 
 @app.get("/api/novartis/nct_numbers")
 async def get_nct_number():
@@ -114,30 +110,30 @@ async def get_trial_details(nctNumber: str):
 
 @app.get("/api/novartis/top_trials")
 async def get_top_trials(
-        NCT_Number: str = None,
-        Study_Title: str = None,
-        Primary_Outcome_Measures: str = None,
-        Secondary_Outcome_Measures: str = None,
-        Inclusion_Criteria: str = None,
-        Exclusion_Criteria: str = None
+        nctNumber: str = None,
+        studyTitle: str = None,
+        primaryOutcomeMeasures: str = None,
+        secondaryOutcomeMeasures: str = None,
+        inclusionCriteria: str = None,
+        exclusionCriteria: str = None
 ):
     if all(arg is None for arg in [
-        Study_Title,
-        Primary_Outcome_Measures,
-        Secondary_Outcome_Measures,
-        Inclusion_Criteria,
-        Exclusion_Criteria
+        studyTitle,
+        primaryOutcomeMeasures,
+        secondaryOutcomeMeasures,
+        inclusionCriteria,
+        exclusionCriteria
     ]):
         raise ValueError("At least one argument must be provided.")
 
     # Fetch data
     df = trials_extraction(
-        NCT_Number,
-        Study_Title,
-        Primary_Outcome_Measures,
-        Secondary_Outcome_Measures,
-        Inclusion_Criteria,
-        Exclusion_Criteria
+        nctNumber,
+        studyTitle,
+        primaryOutcomeMeasures,
+        secondaryOutcomeMeasures,
+        inclusionCriteria,
+        exclusionCriteria
     )
 
     conn = get_db_connection()
@@ -147,20 +143,19 @@ async def get_top_trials(
     # Convert column names to camelCase
     df.columns = [
         "nctNumber", "studyTitle", "primaryOutcomeMeasures", "secondaryOutcomeMeasures",
-        "inclusionCriteria", "exclusionCriteria", "drug", "diseaseCategory",
-        "populationSegment", "studyTitleSimilarity", "primaryOutcomeMeasuresSimilarity",
-        "secondaryOutcomeMeasuresSimilarity", "inclusionCriteriaSimilarity",
-        "exclusionCriteriaSimilarity", "drugSimilarity", "diseaseCategorySimilarity",
-        "populationSegmentSimilarity", "overallSimilarity"
+        "inclusionCriteria", "exclusionCriteria", "disease", "drug", "drugSimilarity",
+        "inclusionCriteriaSimilarity", "exclusionCriteriaSimilarity",
+        "studyTitleSimilarity", "primaryOutcomeMeasuresSimilarity",
+        "secondaryOutcomeMeasuresSimilarity", "overallSimilarity"
     ]
 
     # Convert DataFrame to a list of dictionaries
     trials_list = df.to_dict(orient="records")
-
+    response = json.dumps(trials_list)
     # Insert into the database
     insert_db(
-        NCT_Number, Study_Title, Primary_Outcome_Measures, Secondary_Outcome_Measures,
-        Inclusion_Criteria, Exclusion_Criteria, trials_list, conn
+        nctNumber, studyTitle, primaryOutcomeMeasures, secondaryOutcomeMeasures,
+        inclusionCriteria, exclusionCriteria, response, conn
     )
 
     # Filter the results to return only nctNumber, studyTitle, and overallSimilarity
@@ -195,10 +190,20 @@ async def get_particular_trial(nctNumber: str):
         if df_saved.empty:
             raise HTTPException(status_code=404, detail="No trial data found.")
 
-        # Assuming response is in a JSON-like format in the 'response' column
-        trials_list = df_saved['response'].iloc[0]  # Get the first response (since it's the most recent)
+        # Assuming response is in JSON-like format in the 'response' column
+        response_data = df_saved['response'].iloc[0]  # Get the first response (most recent)
 
-        # If the response is a list of dictionaries (trials data)
+        # Deserialize the JSON string into a Python list of dictionaries
+        try:
+            trials_list = json.loads(response_data)
+        except json.JSONDecodeError:
+            raise HTTPException(status_code=500, detail="Invalid JSON format in the database.")
+
+        # Ensure `trials_list` is a list
+        if not isinstance(trials_list, list):
+            raise HTTPException(status_code=500, detail="Response data is not a valid list of trials.")
+
+        # Filter trials matching the given `nctNumber`
         filtered_trials = [
             trial for trial in trials_list
             if trial.get('nctNumber', '').lower() == nctNumber.lower()
@@ -211,31 +216,32 @@ async def get_particular_trial(nctNumber: str):
         result = [
             {
                 "nctNumber": trial["nctNumber"],
-                "studyTitle": trial["studyTitle"],
-                "primaryOutcomeMeasures": trial["primaryOutcomeMeasures"],
-                "secondaryOutcomeMeasures": trial["secondaryOutcomeMeasures"],
-                "inclusionCriteria": trial["inclusionCriteria"],
-                "exclusionCriteria": trial["exclusionCriteria"],
-                "drug": trial["drug"],
-                "diseaseCategory": trial["diseaseCategory"],
-                "populationSegment": trial["populationSegment"],
-                "studyTitleSimilarity": trial["studyTitleSimilarity"],
-                "primaryOutcomeMeasuresSimilarity": trial["primaryOutcomeMeasuresSimilarity"],
-                "secondaryOutcomeMeasuresSimilarity": trial["secondaryOutcomeMeasuresSimilarity"],
-                "inclusionCriteriaSimilarity": trial["inclusionCriteriaSimilarity"],
-                "exclusionCriteriaSimilarity": trial["exclusionCriteriaSimilarity"],
-                "drugSimilarity": trial["drugSimilarity"],
-                "diseaseCategorySimilarity": trial["diseaseCategorySimilarity"],
-                "populationSegmentSimilarity": trial["populationSegmentSimilarity"],
-                "overallSimilarity": trial["overallSimilarity"]
+                "disease": trial.get("disease", "Not Available"),
+                "studyTitle": trial.get("studyTitle", "Not Available"),
+                "primaryOutcomeMeasures": trial.get("primaryOutcomeMeasures", "Not Available"),
+                "secondaryOutcomeMeasures": trial.get("secondaryOutcomeMeasures", "Not Available"),
+                "inclusionCriteria": trial.get("inclusionCriteria", "Not Available"),
+                "exclusionCriteria": trial.get("exclusionCriteria", "Not Available"),
+                "drug": trial.get("drug", "Not Available"),
+                "studyTitleSimilarity": trial.get("studyTitleSimilarity", 0.0),
+                "primaryOutcomeMeasuresSimilarity": trial.get("primaryOutcomeMeasuresSimilarity", 0.0),
+                "secondaryOutcomeMeasuresSimilarity": trial.get("secondaryOutcomeMeasuresSimilarity", 0.0),
+                "inclusionCriteriaSimilarity": trial.get("inclusionCriteriaSimilarity", 0.0),
+                "exclusionCriteriaSimilarity": trial.get("exclusionCriteriaSimilarity", 0.0),
+                "drugSimilarity": trial.get("drugSimilarity", 0.0),
+                "overallSimilarity": trial.get("overallSimilarity", 0.0)
             }
             for trial in filtered_trials
         ]
 
         return JSONResponse(content={"trialDetails": result})
 
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"An error occurred: {e}")
+
     finally:
-        conn.close()
+        if conn:
+            conn.close()
 
 @app.get("/api/novartis/input_history")
 async def get_history_input():

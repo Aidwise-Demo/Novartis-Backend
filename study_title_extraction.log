@@ -360,3 +360,506 @@
 [1m(INFO)[0m [1m[2025-01-22 14:05:47][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmpvjc9ciff.csv
 [1m(INFO)[0m [1m[2025-01-22 14:05:49][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
 [1m(INFO)[0m [1m[2025-01-22 14:05:49][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-22 15:56:36][0m [1m[Thread: MainThread][0m [extract_study_title_entities(Line: 200)]: Starting study title extraction for: Safety and Efficacy of Deep Wave Trabeculoplasty (DWT) in Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 15:56:36][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 115)]: Extracting Entities from study title: Safety and Efficacy of Deep Wave Trabeculoplasty (DWT) in Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 15:56:36][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmps_z0oazi.csv
+[1m(INFO)[0m [1m[2025-01-22 15:56:40][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-22 15:56:40][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-22 15:56:40][0m [1m[Thread: MainThread][0m [classify_disease(Line: 204)]: Classifying Disease from Study Title
+[1m(INFO)[0m [1m[2025-01-22 15:56:40][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT distinct disease FROM clinicalstudy.conditions;
+[1m(INFO)[0m [1m[2025-01-22 15:56:41][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 3 results
+[1m(INFO)[0m [1m[2025-01-22 15:56:41][0m [1m[Thread: MainThread][0m [classify_disease(Line: 209)]: Initializing LLM
+[1m(INFO)[0m [1m[2025-01-22 15:56:42][0m [1m[Thread: MainThread][0m [classify_disease(Line: 213)]: Running LLM classification
+[1m(INFO)[0m [1m[2025-01-22 15:56:43][0m [1m[Thread: MainThread][0m [classify_disease(Line: 221)]: Disease classification completed: Hypertension
+[1m(INFO)[0m [1m[2025-01-22 15:56:43][0m [1m[Thread: MainThread][0m [getDiseaseDetails(Line: 266)]: Disease found in study title: Hypertension
+[1m(INFO)[0m [1m[2025-01-22 15:56:43][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT Disease_Category, Examples FROM clinicalstudy.diseasecategory WHERE Disease = 'Hypertension';
+[1m(INFO)[0m [1m[2025-01-22 15:56:44][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 5 results
+[1m(INFO)[0m [1m[2025-01-22 15:56:44][0m [1m[Thread: MainThread][0m [getDiseaseDetailsPrompt(Line: 227)]: Generating Disease Details Prompt...
+[1m(INFO)[0m [1m[2025-01-22 15:56:44][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 117)]: Categorising Disease: Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 15:56:44][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmplpgtegpu.csv
+[1m(INFO)[0m [1m[2025-01-22 15:56:46][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-22 15:56:46][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-22 16:09:32][0m [1m[Thread: MainThread][0m [extract_study_title_entities(Line: 200)]: Starting study title extraction for: Safety and Efficacy of Deep Wave Trabeculoplasty (DWT) in Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 16:09:32][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 115)]: Extracting Entities from study title: Safety and Efficacy of Deep Wave Trabeculoplasty (DWT) in Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 16:09:32][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmpnuzzshwc.csv
+[1m(INFO)[0m [1m[2025-01-22 16:09:35][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-22 16:09:35][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-22 16:09:35][0m [1m[Thread: MainThread][0m [classify_disease(Line: 204)]: Classifying Disease from Study Title
+[1m(INFO)[0m [1m[2025-01-22 16:09:35][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT distinct disease FROM clinicalstudy.conditions;
+[1m(INFO)[0m [1m[2025-01-22 16:09:35][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 3 results
+[1m(INFO)[0m [1m[2025-01-22 16:09:35][0m [1m[Thread: MainThread][0m [classify_disease(Line: 209)]: Initializing LLM
+[1m(INFO)[0m [1m[2025-01-22 16:09:36][0m [1m[Thread: MainThread][0m [classify_disease(Line: 213)]: Running LLM classification
+[1m(INFO)[0m [1m[2025-01-22 16:09:37][0m [1m[Thread: MainThread][0m [classify_disease(Line: 221)]: Disease classification completed: Hypertension
+[1m(INFO)[0m [1m[2025-01-22 16:09:37][0m [1m[Thread: MainThread][0m [getDiseaseDetails(Line: 266)]: Disease found in study title: Hypertension
+[1m(INFO)[0m [1m[2025-01-22 16:09:37][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT Disease_Category, Examples FROM clinicalstudy.diseasecategory WHERE Disease = 'Hypertension';
+[1m(INFO)[0m [1m[2025-01-22 16:09:37][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 5 results
+[1m(INFO)[0m [1m[2025-01-22 16:09:37][0m [1m[Thread: MainThread][0m [getDiseaseDetailsPrompt(Line: 227)]: Generating Disease Details Prompt...
+[1m(INFO)[0m [1m[2025-01-22 16:09:37][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 117)]: Categorising Disease: Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 16:09:37][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmpzcnu8tlf.csv
+[1m(INFO)[0m [1m[2025-01-22 16:09:39][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-22 16:09:39][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-22 16:12:27][0m [1m[Thread: MainThread][0m [extract_study_title_entities(Line: 200)]: Starting study title extraction for: Safety and Efficacy of Deep Wave Trabeculoplasty (DWT) in Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 16:12:27][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 115)]: Extracting Entities from study title: Safety and Efficacy of Deep Wave Trabeculoplasty (DWT) in Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 16:12:27][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmpweyxt1td.csv
+[1m(INFO)[0m [1m[2025-01-22 16:12:29][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-22 16:12:29][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-22 16:12:29][0m [1m[Thread: MainThread][0m [classify_disease(Line: 204)]: Classifying Disease from Study Title
+[1m(INFO)[0m [1m[2025-01-22 16:12:29][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT distinct disease FROM clinicalstudy.conditions;
+[1m(INFO)[0m [1m[2025-01-22 16:12:30][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 3 results
+[1m(INFO)[0m [1m[2025-01-22 16:12:30][0m [1m[Thread: MainThread][0m [classify_disease(Line: 209)]: Initializing LLM
+[1m(INFO)[0m [1m[2025-01-22 16:12:31][0m [1m[Thread: MainThread][0m [classify_disease(Line: 213)]: Running LLM classification
+[1m(INFO)[0m [1m[2025-01-22 16:12:31][0m [1m[Thread: MainThread][0m [classify_disease(Line: 221)]: Disease classification completed: Hypertension
+[1m(INFO)[0m [1m[2025-01-22 16:12:31][0m [1m[Thread: MainThread][0m [getDiseaseDetails(Line: 266)]: Disease found in study title: Hypertension
+[1m(INFO)[0m [1m[2025-01-22 16:12:31][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT Disease_Category, Examples FROM clinicalstudy.diseasecategory WHERE Disease = 'Hypertension';
+[1m(INFO)[0m [1m[2025-01-22 16:12:32][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 5 results
+[1m(INFO)[0m [1m[2025-01-22 16:12:32][0m [1m[Thread: MainThread][0m [getDiseaseDetailsPrompt(Line: 227)]: Generating Disease Details Prompt...
+[1m(INFO)[0m [1m[2025-01-22 16:12:32][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 117)]: Categorising Disease: Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 16:12:32][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmp4z4m5nae.csv
+[1m(INFO)[0m [1m[2025-01-22 16:12:34][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-22 16:12:34][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-22 16:19:24][0m [1m[Thread: MainThread][0m [extract_study_title_entities(Line: 200)]: Starting study title extraction for: Safety and Efficacy of Deep Wave Trabeculoplasty (DWT) in Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 16:19:24][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 115)]: Extracting Entities from study title: Safety and Efficacy of Deep Wave Trabeculoplasty (DWT) in Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 16:19:24][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmpaaj10_1j.csv
+[1m(INFO)[0m [1m[2025-01-22 16:19:27][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-22 16:19:27][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-22 16:19:27][0m [1m[Thread: MainThread][0m [classify_disease(Line: 204)]: Classifying Disease from Study Title
+[1m(INFO)[0m [1m[2025-01-22 16:19:27][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT distinct disease FROM clinicalstudy.conditions;
+[1m(INFO)[0m [1m[2025-01-22 16:19:27][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 3 results
+[1m(INFO)[0m [1m[2025-01-22 16:19:27][0m [1m[Thread: MainThread][0m [classify_disease(Line: 209)]: Initializing LLM
+[1m(INFO)[0m [1m[2025-01-22 16:19:29][0m [1m[Thread: MainThread][0m [classify_disease(Line: 213)]: Running LLM classification
+[1m(INFO)[0m [1m[2025-01-22 16:19:29][0m [1m[Thread: MainThread][0m [classify_disease(Line: 221)]: Disease classification completed: Hypertension
+[1m(INFO)[0m [1m[2025-01-22 16:19:29][0m [1m[Thread: MainThread][0m [getDiseaseDetails(Line: 266)]: Disease found in study title: Hypertension
+[1m(INFO)[0m [1m[2025-01-22 16:19:29][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT Disease_Category, Examples FROM clinicalstudy.diseasecategory WHERE Disease = 'Hypertension';
+[1m(INFO)[0m [1m[2025-01-22 16:19:29][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 5 results
+[1m(INFO)[0m [1m[2025-01-22 16:19:29][0m [1m[Thread: MainThread][0m [getDiseaseDetailsPrompt(Line: 227)]: Generating Disease Details Prompt...
+[1m(INFO)[0m [1m[2025-01-22 16:19:29][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 117)]: Categorising Disease: Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 16:19:29][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmp656cy157.csv
+[1m(INFO)[0m [1m[2025-01-22 16:19:32][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-22 16:19:32][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-22 16:27:44][0m [1m[Thread: MainThread][0m [extract_study_title_entities(Line: 200)]: Starting study title extraction for: Safety and Efficacy of Deep Wave Trabeculoplasty (DWT) in Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 16:27:44][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 115)]: Extracting Entities from study title: Safety and Efficacy of Deep Wave Trabeculoplasty (DWT) in Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 16:27:44][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmphj26qsi_.csv
+[1m(INFO)[0m [1m[2025-01-22 16:27:46][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-22 16:27:46][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-22 16:27:46][0m [1m[Thread: MainThread][0m [classify_disease(Line: 204)]: Classifying Disease from Study Title
+[1m(INFO)[0m [1m[2025-01-22 16:27:46][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT distinct disease FROM clinicalstudy.conditions;
+[1m(INFO)[0m [1m[2025-01-22 16:27:46][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 3 results
+[1m(INFO)[0m [1m[2025-01-22 16:27:46][0m [1m[Thread: MainThread][0m [classify_disease(Line: 209)]: Initializing LLM
+[1m(INFO)[0m [1m[2025-01-22 16:27:48][0m [1m[Thread: MainThread][0m [classify_disease(Line: 213)]: Running LLM classification
+[1m(INFO)[0m [1m[2025-01-22 16:27:48][0m [1m[Thread: MainThread][0m [classify_disease(Line: 221)]: Disease classification completed: Hypertension
+[1m(INFO)[0m [1m[2025-01-22 16:27:48][0m [1m[Thread: MainThread][0m [getDiseaseDetails(Line: 266)]: Disease found in study title: Hypertension
+[1m(INFO)[0m [1m[2025-01-22 16:27:48][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT Disease_Category, Examples FROM clinicalstudy.diseasecategory WHERE Disease = 'Hypertension';
+[1m(INFO)[0m [1m[2025-01-22 16:27:49][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 5 results
+[1m(INFO)[0m [1m[2025-01-22 16:27:49][0m [1m[Thread: MainThread][0m [getDiseaseDetailsPrompt(Line: 227)]: Generating Disease Details Prompt...
+[1m(INFO)[0m [1m[2025-01-22 16:27:49][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 117)]: Categorising Disease: Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 16:27:49][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmpehel611y.csv
+[1m(INFO)[0m [1m[2025-01-22 16:27:51][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-22 16:27:51][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-22 16:29:05][0m [1m[Thread: MainThread][0m [extract_study_title_entities(Line: 200)]: Starting study title extraction for: Safety and Efficacy of Deep Wave Trabeculoplasty (DWT) in Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 16:29:05][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 115)]: Extracting Entities from study title: Safety and Efficacy of Deep Wave Trabeculoplasty (DWT) in Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 16:29:05][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmpxzj0g2tm.csv
+[1m(INFO)[0m [1m[2025-01-22 16:29:07][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-22 16:29:07][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-22 16:29:07][0m [1m[Thread: MainThread][0m [classify_disease(Line: 204)]: Classifying Disease from Study Title
+[1m(INFO)[0m [1m[2025-01-22 16:29:07][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT distinct disease FROM clinicalstudy.conditions;
+[1m(INFO)[0m [1m[2025-01-22 16:29:08][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 3 results
+[1m(INFO)[0m [1m[2025-01-22 16:29:08][0m [1m[Thread: MainThread][0m [classify_disease(Line: 209)]: Initializing LLM
+[1m(INFO)[0m [1m[2025-01-22 16:29:08][0m [1m[Thread: MainThread][0m [classify_disease(Line: 213)]: Running LLM classification
+[1m(INFO)[0m [1m[2025-01-22 16:29:09][0m [1m[Thread: MainThread][0m [classify_disease(Line: 221)]: Disease classification completed: Hypertension
+[1m(INFO)[0m [1m[2025-01-22 16:29:09][0m [1m[Thread: MainThread][0m [getDiseaseDetails(Line: 266)]: Disease found in study title: Hypertension
+[1m(INFO)[0m [1m[2025-01-22 16:29:09][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT Disease_Category, Examples FROM clinicalstudy.diseasecategory WHERE Disease = 'Hypertension';
+[1m(INFO)[0m [1m[2025-01-22 16:29:09][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 5 results
+[1m(INFO)[0m [1m[2025-01-22 16:29:09][0m [1m[Thread: MainThread][0m [getDiseaseDetailsPrompt(Line: 227)]: Generating Disease Details Prompt...
+[1m(INFO)[0m [1m[2025-01-22 16:29:09][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 117)]: Categorising Disease: Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 16:29:09][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmp8md8pih9.csv
+[1m(INFO)[0m [1m[2025-01-22 16:29:11][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-22 16:29:11][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-22 16:33:00][0m [1m[Thread: MainThread][0m [extract_study_title_entities(Line: 200)]: Starting study title extraction for: Safety and Efficacy of Deep Wave Trabeculoplasty (DWT) in Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 16:33:00][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 115)]: Extracting Entities from study title: Safety and Efficacy of Deep Wave Trabeculoplasty (DWT) in Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 16:33:00][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmp2mmvkzqc.csv
+[1m(INFO)[0m [1m[2025-01-22 16:33:03][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-22 16:33:03][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-22 16:33:03][0m [1m[Thread: MainThread][0m [classify_disease(Line: 204)]: Classifying Disease from Study Title
+[1m(INFO)[0m [1m[2025-01-22 16:33:03][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT distinct disease FROM clinicalstudy.conditions;
+[1m(INFO)[0m [1m[2025-01-22 16:33:04][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 3 results
+[1m(INFO)[0m [1m[2025-01-22 16:33:04][0m [1m[Thread: MainThread][0m [classify_disease(Line: 209)]: Initializing LLM
+[1m(INFO)[0m [1m[2025-01-22 16:33:05][0m [1m[Thread: MainThread][0m [classify_disease(Line: 213)]: Running LLM classification
+[1m(INFO)[0m [1m[2025-01-22 16:33:05][0m [1m[Thread: MainThread][0m [classify_disease(Line: 221)]: Disease classification completed: Hypertension
+[1m(INFO)[0m [1m[2025-01-22 16:33:05][0m [1m[Thread: MainThread][0m [getDiseaseDetails(Line: 266)]: Disease found in study title: Hypertension
+[1m(INFO)[0m [1m[2025-01-22 16:33:05][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT Disease_Category, Examples FROM clinicalstudy.diseasecategory WHERE Disease = 'Hypertension';
+[1m(INFO)[0m [1m[2025-01-22 16:33:06][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 5 results
+[1m(INFO)[0m [1m[2025-01-22 16:33:06][0m [1m[Thread: MainThread][0m [getDiseaseDetailsPrompt(Line: 227)]: Generating Disease Details Prompt...
+[1m(INFO)[0m [1m[2025-01-22 16:33:06][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 117)]: Categorising Disease: Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 16:33:06][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmp1fh9emwk.csv
+[1m(INFO)[0m [1m[2025-01-22 16:33:08][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-22 16:33:08][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-22 16:33:50][0m [1m[Thread: MainThread][0m [extract_study_title_entities(Line: 200)]: Starting study title extraction for: Safety and Efficacy of Deep Wave Trabeculoplasty (DWT) in Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 16:33:50][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 115)]: Extracting Entities from study title: Safety and Efficacy of Deep Wave Trabeculoplasty (DWT) in Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 16:33:50][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmp4it8_e_k.csv
+[1m(INFO)[0m [1m[2025-01-22 16:33:52][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-22 16:33:52][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-22 16:33:52][0m [1m[Thread: MainThread][0m [classify_disease(Line: 204)]: Classifying Disease from Study Title
+[1m(INFO)[0m [1m[2025-01-22 16:33:52][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT distinct disease FROM clinicalstudy.conditions;
+[1m(INFO)[0m [1m[2025-01-22 16:33:52][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 3 results
+[1m(INFO)[0m [1m[2025-01-22 16:33:52][0m [1m[Thread: MainThread][0m [classify_disease(Line: 209)]: Initializing LLM
+[1m(INFO)[0m [1m[2025-01-22 16:33:53][0m [1m[Thread: MainThread][0m [classify_disease(Line: 213)]: Running LLM classification
+[1m(INFO)[0m [1m[2025-01-22 16:33:54][0m [1m[Thread: MainThread][0m [classify_disease(Line: 221)]: Disease classification completed: Hypertension
+[1m(INFO)[0m [1m[2025-01-22 16:33:54][0m [1m[Thread: MainThread][0m [getDiseaseDetails(Line: 266)]: Disease found in study title: Hypertension
+[1m(INFO)[0m [1m[2025-01-22 16:33:54][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT Disease_Category, Examples FROM clinicalstudy.diseasecategory WHERE Disease = 'Hypertension';
+[1m(INFO)[0m [1m[2025-01-22 16:33:54][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 5 results
+[1m(INFO)[0m [1m[2025-01-22 16:33:54][0m [1m[Thread: MainThread][0m [getDiseaseDetailsPrompt(Line: 227)]: Generating Disease Details Prompt...
+[1m(INFO)[0m [1m[2025-01-22 16:33:54][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 117)]: Categorising Disease: Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 16:33:54][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmpo6iqnbep.csv
+[1m(INFO)[0m [1m[2025-01-22 16:33:57][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-22 16:33:57][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-22 16:48:33][0m [1m[Thread: MainThread][0m [extract_study_title_entities(Line: 200)]: Starting study title extraction for: Safety and Efficacy of Deep Wave Trabeculoplasty (DWT) in Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 16:48:33][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 115)]: Extracting Entities from study title: Safety and Efficacy of Deep Wave Trabeculoplasty (DWT) in Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 16:48:33][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmpk3nsw7nw.csv
+[1m(INFO)[0m [1m[2025-01-22 16:48:36][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-22 16:48:36][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-22 16:48:36][0m [1m[Thread: MainThread][0m [classify_disease(Line: 204)]: Classifying Disease from Study Title
+[1m(INFO)[0m [1m[2025-01-22 16:48:36][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT distinct disease FROM clinicalstudy.conditions;
+[1m(INFO)[0m [1m[2025-01-22 16:48:36][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 3 results
+[1m(INFO)[0m [1m[2025-01-22 16:48:36][0m [1m[Thread: MainThread][0m [classify_disease(Line: 209)]: Initializing LLM
+[1m(INFO)[0m [1m[2025-01-22 16:48:37][0m [1m[Thread: MainThread][0m [classify_disease(Line: 213)]: Running LLM classification
+[1m(INFO)[0m [1m[2025-01-22 16:48:38][0m [1m[Thread: MainThread][0m [classify_disease(Line: 221)]: Disease classification completed: Hypertension
+[1m(INFO)[0m [1m[2025-01-22 16:48:38][0m [1m[Thread: MainThread][0m [getDiseaseDetails(Line: 266)]: Disease found in study title: Hypertension
+[1m(INFO)[0m [1m[2025-01-22 16:48:38][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT Disease_Category, Examples FROM clinicalstudy.diseasecategory WHERE Disease = 'Hypertension';
+[1m(INFO)[0m [1m[2025-01-22 16:48:38][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 5 results
+[1m(INFO)[0m [1m[2025-01-22 16:48:38][0m [1m[Thread: MainThread][0m [getDiseaseDetailsPrompt(Line: 227)]: Generating Disease Details Prompt...
+[1m(INFO)[0m [1m[2025-01-22 16:48:38][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 117)]: Categorising Disease: Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 16:48:38][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmp2goo5sju.csv
+[1m(INFO)[0m [1m[2025-01-22 16:48:47][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-22 16:48:47][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-22 17:02:41][0m [1m[Thread: MainThread][0m [extract_study_title_entities(Line: 200)]: Starting study title extraction for: Safety and Efficacy of Deep Wave Trabeculoplasty (DWT) in Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 17:02:41][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 115)]: Extracting Entities from study title: Safety and Efficacy of Deep Wave Trabeculoplasty (DWT) in Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 17:02:41][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmpq6j6f9ch.csv
+[1m(INFO)[0m [1m[2025-01-22 17:02:43][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-22 17:02:43][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-22 17:02:43][0m [1m[Thread: MainThread][0m [classify_disease(Line: 204)]: Classifying Disease from Study Title
+[1m(INFO)[0m [1m[2025-01-22 17:02:43][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT distinct disease FROM clinicalstudy.conditions;
+[1m(INFO)[0m [1m[2025-01-22 17:02:43][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 3 results
+[1m(INFO)[0m [1m[2025-01-22 17:02:43][0m [1m[Thread: MainThread][0m [classify_disease(Line: 209)]: Initializing LLM
+[1m(INFO)[0m [1m[2025-01-22 17:02:45][0m [1m[Thread: MainThread][0m [classify_disease(Line: 213)]: Running LLM classification
+[1m(INFO)[0m [1m[2025-01-22 17:02:45][0m [1m[Thread: MainThread][0m [classify_disease(Line: 221)]: Disease classification completed: Hypertension
+[1m(INFO)[0m [1m[2025-01-22 17:02:45][0m [1m[Thread: MainThread][0m [getDiseaseDetails(Line: 266)]: Disease found in study title: Hypertension
+[1m(INFO)[0m [1m[2025-01-22 17:02:45][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT Disease_Category, Examples FROM clinicalstudy.diseasecategory WHERE Disease = 'Hypertension';
+[1m(INFO)[0m [1m[2025-01-22 17:02:45][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 5 results
+[1m(INFO)[0m [1m[2025-01-22 17:02:45][0m [1m[Thread: MainThread][0m [getDiseaseDetailsPrompt(Line: 227)]: Generating Disease Details Prompt...
+[1m(INFO)[0m [1m[2025-01-22 17:02:45][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 117)]: Categorising Disease: Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 17:02:45][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmpijg95ccc.csv
+[1m(INFO)[0m [1m[2025-01-22 17:02:48][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-22 17:02:48][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-22 17:03:52][0m [1m[Thread: MainThread][0m [extract_study_title_entities(Line: 200)]: Starting study title extraction for: Safety and Efficacy of Deep Wave Trabeculoplasty (DWT) in Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 17:03:52][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 115)]: Extracting Entities from study title: Safety and Efficacy of Deep Wave Trabeculoplasty (DWT) in Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 17:03:52][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmp7qlelkc2.csv
+[1m(INFO)[0m [1m[2025-01-22 17:03:54][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-22 17:03:54][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-22 17:03:54][0m [1m[Thread: MainThread][0m [classify_disease(Line: 204)]: Classifying Disease from Study Title
+[1m(INFO)[0m [1m[2025-01-22 17:03:54][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT distinct disease FROM clinicalstudy.conditions;
+[1m(INFO)[0m [1m[2025-01-22 17:03:54][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 3 results
+[1m(INFO)[0m [1m[2025-01-22 17:03:54][0m [1m[Thread: MainThread][0m [classify_disease(Line: 209)]: Initializing LLM
+[1m(INFO)[0m [1m[2025-01-22 17:03:55][0m [1m[Thread: MainThread][0m [classify_disease(Line: 213)]: Running LLM classification
+[1m(INFO)[0m [1m[2025-01-22 17:03:56][0m [1m[Thread: MainThread][0m [classify_disease(Line: 221)]: Disease classification completed: Hypertension
+[1m(INFO)[0m [1m[2025-01-22 17:03:56][0m [1m[Thread: MainThread][0m [getDiseaseDetails(Line: 266)]: Disease found in study title: Hypertension
+[1m(INFO)[0m [1m[2025-01-22 17:03:56][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT Disease_Category, Examples FROM clinicalstudy.diseasecategory WHERE Disease = 'Hypertension';
+[1m(INFO)[0m [1m[2025-01-22 17:03:56][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 5 results
+[1m(INFO)[0m [1m[2025-01-22 17:03:56][0m [1m[Thread: MainThread][0m [getDiseaseDetailsPrompt(Line: 227)]: Generating Disease Details Prompt...
+[1m(INFO)[0m [1m[2025-01-22 17:03:56][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 117)]: Categorising Disease: Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 17:03:56][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmp54fpgu40.csv
+[1m(INFO)[0m [1m[2025-01-22 17:03:58][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-22 17:03:58][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-22 17:20:34][0m [1m[Thread: MainThread][0m [extract_study_title_entities(Line: 200)]: Starting study title extraction for: Safety and Efficacy of Deep Wave Trabeculoplasty (DWT) in Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 17:20:34][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 115)]: Extracting Entities from study title: Safety and Efficacy of Deep Wave Trabeculoplasty (DWT) in Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 17:20:34][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmpal3vzjxh.csv
+[1m(INFO)[0m [1m[2025-01-22 17:20:38][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-22 17:20:38][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-22 17:20:38][0m [1m[Thread: MainThread][0m [classify_disease(Line: 204)]: Classifying Disease from Study Title
+[1m(INFO)[0m [1m[2025-01-22 17:20:38][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT distinct disease FROM clinicalstudy.conditions;
+[1m(INFO)[0m [1m[2025-01-22 17:20:39][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 3 results
+[1m(INFO)[0m [1m[2025-01-22 17:20:39][0m [1m[Thread: MainThread][0m [classify_disease(Line: 209)]: Initializing LLM
+[1m(INFO)[0m [1m[2025-01-22 17:20:40][0m [1m[Thread: MainThread][0m [classify_disease(Line: 213)]: Running LLM classification
+[1m(INFO)[0m [1m[2025-01-22 17:20:41][0m [1m[Thread: MainThread][0m [classify_disease(Line: 221)]: Disease classification completed: Hypertension
+[1m(INFO)[0m [1m[2025-01-22 17:20:41][0m [1m[Thread: MainThread][0m [getDiseaseDetails(Line: 266)]: Disease found in study title: Hypertension
+[1m(INFO)[0m [1m[2025-01-22 17:20:41][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT Disease_Category, Examples FROM clinicalstudy.diseasecategory WHERE Disease = 'Hypertension';
+[1m(INFO)[0m [1m[2025-01-22 17:20:41][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 5 results
+[1m(INFO)[0m [1m[2025-01-22 17:20:41][0m [1m[Thread: MainThread][0m [getDiseaseDetailsPrompt(Line: 227)]: Generating Disease Details Prompt...
+[1m(INFO)[0m [1m[2025-01-22 17:20:41][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 117)]: Categorising Disease: Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 17:20:41][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmpw04ylpej.csv
+[1m(INFO)[0m [1m[2025-01-22 17:28:45][0m [1m[Thread: MainThread][0m [extract_study_title_entities(Line: 200)]: Starting study title extraction for: Safety and Efficacy of Deep Wave Trabeculoplasty (DWT) in Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 17:28:45][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 115)]: Extracting Entities from study title: Safety and Efficacy of Deep Wave Trabeculoplasty (DWT) in Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 17:28:45][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmpuq12lurw.csv
+[1m(INFO)[0m [1m[2025-01-22 17:28:47][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-22 17:28:47][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-22 17:28:47][0m [1m[Thread: MainThread][0m [classify_disease(Line: 204)]: Classifying Disease from Study Title
+[1m(INFO)[0m [1m[2025-01-22 17:28:47][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT distinct disease FROM clinicalstudy.conditions;
+[1m(INFO)[0m [1m[2025-01-22 17:28:47][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 3 results
+[1m(INFO)[0m [1m[2025-01-22 17:28:47][0m [1m[Thread: MainThread][0m [classify_disease(Line: 209)]: Initializing LLM
+[1m(INFO)[0m [1m[2025-01-22 17:28:49][0m [1m[Thread: MainThread][0m [classify_disease(Line: 213)]: Running LLM classification
+[1m(INFO)[0m [1m[2025-01-22 17:28:49][0m [1m[Thread: MainThread][0m [classify_disease(Line: 221)]: Disease classification completed: Hypertension
+[1m(INFO)[0m [1m[2025-01-22 17:28:49][0m [1m[Thread: MainThread][0m [getDiseaseDetails(Line: 266)]: Disease found in study title: Hypertension
+[1m(INFO)[0m [1m[2025-01-22 17:28:49][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT Disease_Category, Examples FROM clinicalstudy.diseasecategory WHERE Disease = 'Hypertension';
+[1m(INFO)[0m [1m[2025-01-22 17:28:50][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 5 results
+[1m(INFO)[0m [1m[2025-01-22 17:28:50][0m [1m[Thread: MainThread][0m [getDiseaseDetailsPrompt(Line: 227)]: Generating Disease Details Prompt...
+[1m(INFO)[0m [1m[2025-01-22 17:28:50][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 117)]: Categorising Disease: Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 17:28:50][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmp2z8zv0uy.csv
+[1m(INFO)[0m [1m[2025-01-22 17:28:52][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-22 17:28:52][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-22 17:29:38][0m [1m[Thread: MainThread][0m [extract_study_title_entities(Line: 200)]: Starting study title extraction for: Safety and Efficacy of Deep Wave Trabeculoplasty (DWT) in Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 17:29:38][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 115)]: Extracting Entities from study title: Safety and Efficacy of Deep Wave Trabeculoplasty (DWT) in Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 17:29:38][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmpj7djh2om.csv
+[1m(INFO)[0m [1m[2025-01-22 17:29:40][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-22 17:29:40][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-22 17:29:40][0m [1m[Thread: MainThread][0m [classify_disease(Line: 204)]: Classifying Disease from Study Title
+[1m(INFO)[0m [1m[2025-01-22 17:29:40][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT distinct disease FROM clinicalstudy.conditions;
+[1m(INFO)[0m [1m[2025-01-22 17:29:41][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 3 results
+[1m(INFO)[0m [1m[2025-01-22 17:29:41][0m [1m[Thread: MainThread][0m [classify_disease(Line: 209)]: Initializing LLM
+[1m(INFO)[0m [1m[2025-01-22 17:29:42][0m [1m[Thread: MainThread][0m [classify_disease(Line: 213)]: Running LLM classification
+[1m(INFO)[0m [1m[2025-01-22 17:29:42][0m [1m[Thread: MainThread][0m [classify_disease(Line: 221)]: Disease classification completed: Hypertension
+[1m(INFO)[0m [1m[2025-01-22 17:29:42][0m [1m[Thread: MainThread][0m [getDiseaseDetails(Line: 266)]: Disease found in study title: Hypertension
+[1m(INFO)[0m [1m[2025-01-22 17:29:42][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT Disease_Category, Examples FROM clinicalstudy.diseasecategory WHERE Disease = 'Hypertension';
+[1m(INFO)[0m [1m[2025-01-22 17:29:42][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 5 results
+[1m(INFO)[0m [1m[2025-01-22 17:29:42][0m [1m[Thread: MainThread][0m [getDiseaseDetailsPrompt(Line: 227)]: Generating Disease Details Prompt...
+[1m(INFO)[0m [1m[2025-01-22 17:29:42][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 117)]: Categorising Disease: Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 17:29:42][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmpj3b7z1zq.csv
+[1m(INFO)[0m [1m[2025-01-22 17:29:49][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-22 17:29:49][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-22 17:31:29][0m [1m[Thread: MainThread][0m [extract_study_title_entities(Line: 200)]: Starting study title extraction for: Safety and Efficacy of Deep Wave Trabeculoplasty (DWT) in Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 17:31:29][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 115)]: Extracting Entities from study title: Safety and Efficacy of Deep Wave Trabeculoplasty (DWT) in Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 17:31:29][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmp0cmn02s9.csv
+[1m(INFO)[0m [1m[2025-01-22 17:31:32][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-22 17:31:32][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-22 17:31:32][0m [1m[Thread: MainThread][0m [classify_disease(Line: 204)]: Classifying Disease from Study Title
+[1m(INFO)[0m [1m[2025-01-22 17:31:32][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT distinct disease FROM clinicalstudy.conditions;
+[1m(INFO)[0m [1m[2025-01-22 17:31:32][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 3 results
+[1m(INFO)[0m [1m[2025-01-22 17:31:32][0m [1m[Thread: MainThread][0m [classify_disease(Line: 209)]: Initializing LLM
+[1m(INFO)[0m [1m[2025-01-22 17:31:33][0m [1m[Thread: MainThread][0m [classify_disease(Line: 213)]: Running LLM classification
+[1m(INFO)[0m [1m[2025-01-22 17:31:34][0m [1m[Thread: MainThread][0m [classify_disease(Line: 221)]: Disease classification completed: Hypertension
+[1m(INFO)[0m [1m[2025-01-22 17:31:34][0m [1m[Thread: MainThread][0m [getDiseaseDetails(Line: 266)]: Disease found in study title: Hypertension
+[1m(INFO)[0m [1m[2025-01-22 17:31:34][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT Disease_Category, Examples FROM clinicalstudy.diseasecategory WHERE Disease = 'Hypertension';
+[1m(INFO)[0m [1m[2025-01-22 17:31:34][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 5 results
+[1m(INFO)[0m [1m[2025-01-22 17:31:34][0m [1m[Thread: MainThread][0m [getDiseaseDetailsPrompt(Line: 227)]: Generating Disease Details Prompt...
+[1m(INFO)[0m [1m[2025-01-22 17:31:34][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 117)]: Categorising Disease: Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 17:31:34][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmp_t3v19cc.csv
+[1m(INFO)[0m [1m[2025-01-22 17:31:37][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-22 17:31:37][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-22 17:36:35][0m [1m[Thread: MainThread][0m [extract_study_title_entities(Line: 200)]: Starting study title extraction for: Safety and Efficacy of Deep Wave Trabeculoplasty (DWT) in Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 17:36:35][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 115)]: Extracting Entities from study title: Safety and Efficacy of Deep Wave Trabeculoplasty (DWT) in Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 17:36:35][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmpgtha9gqo.csv
+[1m(INFO)[0m [1m[2025-01-22 17:36:37][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-22 17:36:37][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-22 17:36:37][0m [1m[Thread: MainThread][0m [classify_disease(Line: 204)]: Classifying Disease from Study Title
+[1m(INFO)[0m [1m[2025-01-22 17:36:37][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT distinct disease FROM clinicalstudy.conditions;
+[1m(INFO)[0m [1m[2025-01-22 17:36:37][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 3 results
+[1m(INFO)[0m [1m[2025-01-22 17:36:37][0m [1m[Thread: MainThread][0m [classify_disease(Line: 209)]: Initializing LLM
+[1m(INFO)[0m [1m[2025-01-22 17:36:39][0m [1m[Thread: MainThread][0m [classify_disease(Line: 213)]: Running LLM classification
+[1m(INFO)[0m [1m[2025-01-22 17:36:40][0m [1m[Thread: MainThread][0m [classify_disease(Line: 221)]: Disease classification completed: Hypertension
+[1m(INFO)[0m [1m[2025-01-22 17:36:40][0m [1m[Thread: MainThread][0m [getDiseaseDetails(Line: 266)]: Disease found in study title: Hypertension
+[1m(INFO)[0m [1m[2025-01-22 17:36:40][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT Disease_Category, Examples FROM clinicalstudy.diseasecategory WHERE Disease = 'Hypertension';
+[1m(INFO)[0m [1m[2025-01-22 17:36:40][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 5 results
+[1m(INFO)[0m [1m[2025-01-22 17:36:40][0m [1m[Thread: MainThread][0m [getDiseaseDetailsPrompt(Line: 227)]: Generating Disease Details Prompt...
+[1m(INFO)[0m [1m[2025-01-22 17:36:40][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 117)]: Categorising Disease: Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 17:36:40][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmpq3sojtmq.csv
+[1m(INFO)[0m [1m[2025-01-22 17:36:42][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-22 17:36:42][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-22 17:38:28][0m [1m[Thread: MainThread][0m [extract_study_title_entities(Line: 200)]: Starting study title extraction for: Safety and Efficacy of Deep Wave Trabeculoplasty (DWT) in Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 17:38:28][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 115)]: Extracting Entities from study title: Safety and Efficacy of Deep Wave Trabeculoplasty (DWT) in Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 17:38:28][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmpc4in9s72.csv
+[1m(INFO)[0m [1m[2025-01-22 17:38:30][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-22 17:38:30][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-22 17:38:30][0m [1m[Thread: MainThread][0m [classify_disease(Line: 204)]: Classifying Disease from Study Title
+[1m(INFO)[0m [1m[2025-01-22 17:38:30][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT distinct disease FROM clinicalstudy.conditions;
+[1m(INFO)[0m [1m[2025-01-22 17:38:30][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 3 results
+[1m(INFO)[0m [1m[2025-01-22 17:38:30][0m [1m[Thread: MainThread][0m [classify_disease(Line: 209)]: Initializing LLM
+[1m(INFO)[0m [1m[2025-01-22 17:38:32][0m [1m[Thread: MainThread][0m [classify_disease(Line: 213)]: Running LLM classification
+[1m(INFO)[0m [1m[2025-01-22 17:38:32][0m [1m[Thread: MainThread][0m [classify_disease(Line: 221)]: Disease classification completed: Hypertension
+[1m(INFO)[0m [1m[2025-01-22 17:38:32][0m [1m[Thread: MainThread][0m [getDiseaseDetails(Line: 266)]: Disease found in study title: Hypertension
+[1m(INFO)[0m [1m[2025-01-22 17:38:32][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT Disease_Category, Examples FROM clinicalstudy.diseasecategory WHERE Disease = 'Hypertension';
+[1m(INFO)[0m [1m[2025-01-22 17:38:33][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 5 results
+[1m(INFO)[0m [1m[2025-01-22 17:38:33][0m [1m[Thread: MainThread][0m [getDiseaseDetailsPrompt(Line: 227)]: Generating Disease Details Prompt...
+[1m(INFO)[0m [1m[2025-01-22 17:38:33][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 117)]: Categorising Disease: Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 17:38:33][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmp68s5kio7.csv
+[1m(INFO)[0m [1m[2025-01-22 17:38:35][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-22 17:38:35][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-22 18:06:13][0m [1m[Thread: MainThread][0m [extract_study_title_entities(Line: 200)]: Starting study title extraction for: Safety and Efficacy of Deep Wave Trabeculoplasty (DWT) in Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 18:06:13][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 115)]: Extracting Entities from study title: Safety and Efficacy of Deep Wave Trabeculoplasty (DWT) in Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 18:06:13][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmpf57734c2.csv
+[1m(INFO)[0m [1m[2025-01-22 18:06:18][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-22 18:06:18][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-22 18:06:18][0m [1m[Thread: MainThread][0m [classify_disease(Line: 204)]: Classifying Disease from Study Title
+[1m(INFO)[0m [1m[2025-01-22 18:06:18][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT distinct disease FROM clinicalstudy.conditions;
+[1m(INFO)[0m [1m[2025-01-22 18:06:18][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 3 results
+[1m(INFO)[0m [1m[2025-01-22 18:06:18][0m [1m[Thread: MainThread][0m [classify_disease(Line: 209)]: Initializing LLM
+[1m(INFO)[0m [1m[2025-01-22 18:06:20][0m [1m[Thread: MainThread][0m [classify_disease(Line: 213)]: Running LLM classification
+[1m(INFO)[0m [1m[2025-01-22 18:06:20][0m [1m[Thread: MainThread][0m [classify_disease(Line: 221)]: Disease classification completed: Hypertension
+[1m(INFO)[0m [1m[2025-01-22 18:06:20][0m [1m[Thread: MainThread][0m [getDiseaseDetails(Line: 266)]: Disease found in study title: Hypertension
+[1m(INFO)[0m [1m[2025-01-22 18:06:20][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT Disease_Category, Examples FROM clinicalstudy.diseasecategory WHERE Disease = 'Hypertension';
+[1m(INFO)[0m [1m[2025-01-22 18:06:21][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 5 results
+[1m(INFO)[0m [1m[2025-01-22 18:06:21][0m [1m[Thread: MainThread][0m [getDiseaseDetailsPrompt(Line: 227)]: Generating Disease Details Prompt...
+[1m(INFO)[0m [1m[2025-01-22 18:06:21][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 117)]: Categorising Disease: Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-22 18:06:21][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmp53x02zxl.csv
+[1m(INFO)[0m [1m[2025-01-22 18:06:30][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-22 18:06:30][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-23 13:00:04][0m [1m[Thread: MainThread][0m [extract_study_title_entities(Line: 200)]: Starting study title extraction for: Safety and Efficacy of Deep Wave Trabeculoplasty (DWT) in Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-23 13:00:04][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 115)]: Extracting Entities from study title: Safety and Efficacy of Deep Wave Trabeculoplasty (DWT) in Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-23 13:00:04][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmpdpn3mlof.csv
+[1m(INFO)[0m [1m[2025-01-23 13:00:11][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-23 13:00:11][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-23 13:00:11][0m [1m[Thread: MainThread][0m [classify_disease(Line: 204)]: Classifying Disease from Study Title
+[1m(INFO)[0m [1m[2025-01-23 13:00:11][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT distinct disease FROM clinicalstudy.conditions;
+[1m(INFO)[0m [1m[2025-01-23 13:00:11][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 3 results
+[1m(INFO)[0m [1m[2025-01-23 13:00:11][0m [1m[Thread: MainThread][0m [classify_disease(Line: 209)]: Initializing LLM
+[1m(INFO)[0m [1m[2025-01-23 13:00:13][0m [1m[Thread: MainThread][0m [classify_disease(Line: 213)]: Running LLM classification
+[1m(INFO)[0m [1m[2025-01-23 13:00:13][0m [1m[Thread: MainThread][0m [classify_disease(Line: 221)]: Disease classification completed: Hypertension
+[1m(INFO)[0m [1m[2025-01-23 13:00:13][0m [1m[Thread: MainThread][0m [getDiseaseDetails(Line: 266)]: Disease found in study title: Hypertension
+[1m(INFO)[0m [1m[2025-01-23 13:00:13][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT Disease_Category, Examples FROM clinicalstudy.diseasecategory WHERE Disease = 'Hypertension';
+[1m(INFO)[0m [1m[2025-01-23 13:00:14][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 5 results
+[1m(INFO)[0m [1m[2025-01-23 13:00:14][0m [1m[Thread: MainThread][0m [getDiseaseDetailsPrompt(Line: 227)]: Generating Disease Details Prompt...
+[1m(INFO)[0m [1m[2025-01-23 13:00:14][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 117)]: Categorising Disease: Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-23 13:00:14][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmp311ffr_7.csv
+[1m(INFO)[0m [1m[2025-01-23 13:00:16][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-23 13:00:16][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-23 13:39:05][0m [1m[Thread: MainThread][0m [extract_study_title_entities(Line: 200)]: Starting study title extraction for: Safety and Efficacy of Deep Wave Trabeculoplasty (DWT) in Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-23 13:39:05][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 115)]: Extracting Entities from study title: Safety and Efficacy of Deep Wave Trabeculoplasty (DWT) in Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-23 13:39:05][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmp8lf7pkzi.csv
+[1m(INFO)[0m [1m[2025-01-23 13:39:13][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-23 13:39:13][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-23 13:39:13][0m [1m[Thread: MainThread][0m [classify_disease(Line: 204)]: Classifying Disease from Study Title
+[1m(INFO)[0m [1m[2025-01-23 13:39:13][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT distinct disease FROM clinicalstudy.conditions;
+[1m(INFO)[0m [1m[2025-01-23 13:39:14][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 3 results
+[1m(INFO)[0m [1m[2025-01-23 13:39:14][0m [1m[Thread: MainThread][0m [classify_disease(Line: 209)]: Initializing LLM
+[1m(INFO)[0m [1m[2025-01-23 13:39:15][0m [1m[Thread: MainThread][0m [classify_disease(Line: 213)]: Running LLM classification
+[1m(INFO)[0m [1m[2025-01-23 13:39:16][0m [1m[Thread: MainThread][0m [classify_disease(Line: 221)]: Disease classification completed: Hypertension
+[1m(INFO)[0m [1m[2025-01-23 13:39:16][0m [1m[Thread: MainThread][0m [getDiseaseDetails(Line: 266)]: Disease found in study title: Hypertension
+[1m(INFO)[0m [1m[2025-01-23 13:39:16][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT Disease_Category, Examples FROM clinicalstudy.diseasecategory WHERE Disease = 'Hypertension';
+[1m(INFO)[0m [1m[2025-01-23 13:39:16][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 5 results
+[1m(INFO)[0m [1m[2025-01-23 13:39:16][0m [1m[Thread: MainThread][0m [getDiseaseDetailsPrompt(Line: 227)]: Generating Disease Details Prompt...
+[1m(INFO)[0m [1m[2025-01-23 13:39:16][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 117)]: Categorising Disease: Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-23 13:39:16][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmppql7yo3i.csv
+[1m(INFO)[0m [1m[2025-01-23 13:39:18][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-23 13:39:18][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-23 14:25:57][0m [1m[Thread: MainThread][0m [extract_study_title_entities(Line: 200)]: Starting study title extraction for: Safety and Efficacy of Deep Wave Trabeculoplasty (DWT) in Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-23 14:25:57][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 115)]: Extracting Entities from study title: Safety and Efficacy of Deep Wave Trabeculoplasty (DWT) in Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-23 14:25:57][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmpx0koh79a.csv
+[1m(INFO)[0m [1m[2025-01-23 14:26:00][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-23 14:26:00][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-23 14:26:00][0m [1m[Thread: MainThread][0m [classify_disease(Line: 204)]: Classifying Disease from Study Title
+[1m(INFO)[0m [1m[2025-01-23 14:26:00][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT distinct disease FROM clinicalstudy.conditions;
+[1m(INFO)[0m [1m[2025-01-23 14:26:00][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 3 results
+[1m(INFO)[0m [1m[2025-01-23 14:26:00][0m [1m[Thread: MainThread][0m [classify_disease(Line: 209)]: Initializing LLM
+[1m(INFO)[0m [1m[2025-01-23 14:26:02][0m [1m[Thread: MainThread][0m [classify_disease(Line: 213)]: Running LLM classification
+[1m(INFO)[0m [1m[2025-01-23 14:26:02][0m [1m[Thread: MainThread][0m [classify_disease(Line: 221)]: Disease classification completed: Hypertension
+[1m(INFO)[0m [1m[2025-01-23 14:26:02][0m [1m[Thread: MainThread][0m [getDiseaseDetails(Line: 266)]: Disease found in study title: Hypertension
+[1m(INFO)[0m [1m[2025-01-23 14:26:02][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT Disease_Category, Examples FROM clinicalstudy.diseasecategory WHERE Disease = 'Hypertension';
+[1m(INFO)[0m [1m[2025-01-23 14:26:03][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 5 results
+[1m(INFO)[0m [1m[2025-01-23 14:26:03][0m [1m[Thread: MainThread][0m [getDiseaseDetailsPrompt(Line: 227)]: Generating Disease Details Prompt...
+[1m(INFO)[0m [1m[2025-01-23 14:26:03][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 117)]: Categorising Disease: Primary Ocular Hypertension
+[1m(INFO)[0m [1m[2025-01-23 14:26:03][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmpborw_i1r.csv
+[1m(INFO)[0m [1m[2025-01-23 14:26:05][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-23 14:26:05][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-23 14:51:42][0m [1m[Thread: MainThread][0m [extract_study_title_entities(Line: 200)]: Starting study title extraction for: A Study of GT267-004 Versus Vancomycin and GT267-004 Versus Metronidazole in Patients With C. Difficile-Associated Diarrhea
+[1m(INFO)[0m [1m[2025-01-23 14:51:42][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 115)]: Extracting Entities from study title: A Study of GT267-004 Versus Vancomycin and GT267-004 Versus Metronidazole in Patients With C. Difficile-Associated Diarrhea
+[1m(INFO)[0m [1m[2025-01-23 14:51:42][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmp0h_riq_b.csv
+[1m(INFO)[0m [1m[2025-01-23 14:51:47][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-23 14:51:47][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-23 14:51:47][0m [1m[Thread: MainThread][0m [classify_disease(Line: 204)]: Classifying Disease from Study Title
+[1m(INFO)[0m [1m[2025-01-23 14:51:47][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT distinct disease FROM clinicalstudy.conditions;
+[1m(INFO)[0m [1m[2025-01-23 14:51:47][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 3 results
+[1m(INFO)[0m [1m[2025-01-23 14:51:47][0m [1m[Thread: MainThread][0m [classify_disease(Line: 209)]: Initializing LLM
+[1m(INFO)[0m [1m[2025-01-23 14:51:49][0m [1m[Thread: MainThread][0m [classify_disease(Line: 213)]: Running LLM classification
+[1m(WARNING)[0m [1m[2025-01-23 14:51:50][0m [1m[Thread: MainThread][0m [getDiseaseDetails(Line: 275)]: No disease found in study title
+[1m(INFO)[0m [1m[2025-01-23 14:53:42][0m [1m[Thread: MainThread][0m [extract_study_title_entities(Line: 200)]: Starting study title extraction for: Clinical Trial in Patients With Hypertension and Left Ventricular Dysfunction
+[1m(INFO)[0m [1m[2025-01-23 14:53:42][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 115)]: Extracting Entities from study title: Clinical Trial in Patients With Hypertension and Left Ventricular Dysfunction
+[1m(INFO)[0m [1m[2025-01-23 14:53:42][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmpjq9mqxoh.csv
+[1m(INFO)[0m [1m[2025-01-23 14:53:45][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-23 14:53:45][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-23 14:53:45][0m [1m[Thread: MainThread][0m [classify_disease(Line: 204)]: Classifying Disease from Study Title
+[1m(INFO)[0m [1m[2025-01-23 14:53:45][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT distinct disease FROM clinicalstudy.conditions;
+[1m(INFO)[0m [1m[2025-01-23 14:53:45][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 3 results
+[1m(INFO)[0m [1m[2025-01-23 14:53:45][0m [1m[Thread: MainThread][0m [classify_disease(Line: 209)]: Initializing LLM
+[1m(INFO)[0m [1m[2025-01-23 14:53:45][0m [1m[Thread: MainThread][0m [classify_disease(Line: 213)]: Running LLM classification
+[1m(INFO)[0m [1m[2025-01-23 14:53:46][0m [1m[Thread: MainThread][0m [classify_disease(Line: 221)]: Disease classification completed: Hypertension
+[1m(INFO)[0m [1m[2025-01-23 14:53:46][0m [1m[Thread: MainThread][0m [getDiseaseDetails(Line: 266)]: Disease found in study title: Hypertension
+[1m(INFO)[0m [1m[2025-01-23 14:53:46][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT Disease_Category, Examples FROM clinicalstudy.diseasecategory WHERE Disease = 'Hypertension';
+[1m(INFO)[0m [1m[2025-01-23 14:53:46][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 5 results
+[1m(INFO)[0m [1m[2025-01-23 14:53:46][0m [1m[Thread: MainThread][0m [getDiseaseDetailsPrompt(Line: 227)]: Generating Disease Details Prompt...
+[1m(INFO)[0m [1m[2025-01-23 14:53:46][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 117)]: Categorising Disease: Hypertension
+[1m(INFO)[0m [1m[2025-01-23 14:53:46][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmpz0mqw_xt.csv
+[1m(INFO)[0m [1m[2025-01-23 14:53:49][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-23 14:53:49][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-23 14:55:56][0m [1m[Thread: MainThread][0m [extract_study_title_entities(Line: 200)]: Starting study title extraction for: Clinical Trial in Patients With Hypertension and Left Ventricular Dysfunction
+[1m(INFO)[0m [1m[2025-01-23 14:55:56][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 115)]: Extracting Entities from study title: Clinical Trial in Patients With Hypertension and Left Ventricular Dysfunction
+[1m(INFO)[0m [1m[2025-01-23 14:55:56][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmp9qtn5vdo.csv
+[1m(INFO)[0m [1m[2025-01-23 14:55:59][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-23 14:55:59][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-23 14:55:59][0m [1m[Thread: MainThread][0m [classify_disease(Line: 204)]: Classifying Disease from Study Title
+[1m(INFO)[0m [1m[2025-01-23 14:55:59][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT distinct disease FROM clinicalstudy.conditions;
+[1m(INFO)[0m [1m[2025-01-23 14:56:00][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 3 results
+[1m(INFO)[0m [1m[2025-01-23 14:56:00][0m [1m[Thread: MainThread][0m [classify_disease(Line: 209)]: Initializing LLM
+[1m(INFO)[0m [1m[2025-01-23 14:56:01][0m [1m[Thread: MainThread][0m [classify_disease(Line: 213)]: Running LLM classification
+[1m(INFO)[0m [1m[2025-01-23 14:56:03][0m [1m[Thread: MainThread][0m [classify_disease(Line: 221)]: Disease classification completed: Hypertension
+[1m(INFO)[0m [1m[2025-01-23 14:56:03][0m [1m[Thread: MainThread][0m [getDiseaseDetails(Line: 266)]: Disease found in study title: Hypertension
+[1m(INFO)[0m [1m[2025-01-23 14:56:03][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT Disease_Category, Examples FROM clinicalstudy.diseasecategory WHERE Disease = 'Hypertension';
+[1m(INFO)[0m [1m[2025-01-23 14:56:03][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 5 results
+[1m(INFO)[0m [1m[2025-01-23 14:56:03][0m [1m[Thread: MainThread][0m [getDiseaseDetailsPrompt(Line: 227)]: Generating Disease Details Prompt...
+[1m(INFO)[0m [1m[2025-01-23 14:56:03][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 117)]: Categorising Disease: Hypertension
+[1m(INFO)[0m [1m[2025-01-23 14:56:03][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmpvijcv_95.csv
+[1m(INFO)[0m [1m[2025-01-23 14:56:06][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-23 14:56:06][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-23 14:57:17][0m [1m[Thread: MainThread][0m [extract_study_title_entities(Line: 200)]: Starting study title extraction for: Clinical Trial in Patients With Hypertension and Left Ventricular Dysfunction
+[1m(INFO)[0m [1m[2025-01-23 14:57:17][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 115)]: Extracting Entities from study title: Clinical Trial in Patients With Hypertension and Left Ventricular Dysfunction
+[1m(INFO)[0m [1m[2025-01-23 14:57:17][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmpxosl6_cn.csv
+[1m(INFO)[0m [1m[2025-01-23 14:57:21][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-23 14:57:21][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-23 14:57:21][0m [1m[Thread: MainThread][0m [classify_disease(Line: 204)]: Classifying Disease from Study Title
+[1m(INFO)[0m [1m[2025-01-23 14:57:21][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT distinct disease FROM clinicalstudy.conditions;
+[1m(INFO)[0m [1m[2025-01-23 14:57:21][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 3 results
+[1m(INFO)[0m [1m[2025-01-23 14:57:21][0m [1m[Thread: MainThread][0m [classify_disease(Line: 209)]: Initializing LLM
+[1m(INFO)[0m [1m[2025-01-23 14:57:22][0m [1m[Thread: MainThread][0m [classify_disease(Line: 213)]: Running LLM classification
+[1m(INFO)[0m [1m[2025-01-23 14:57:23][0m [1m[Thread: MainThread][0m [classify_disease(Line: 221)]: Disease classification completed: Hypertension
+[1m(INFO)[0m [1m[2025-01-23 14:57:23][0m [1m[Thread: MainThread][0m [getDiseaseDetails(Line: 266)]: Disease found in study title: Hypertension
+[1m(INFO)[0m [1m[2025-01-23 14:57:23][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT Disease_Category, Examples FROM clinicalstudy.diseasecategory WHERE Disease = 'Hypertension';
+[1m(INFO)[0m [1m[2025-01-23 14:57:23][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 5 results
+[1m(INFO)[0m [1m[2025-01-23 14:57:23][0m [1m[Thread: MainThread][0m [getDiseaseDetailsPrompt(Line: 227)]: Generating Disease Details Prompt...
+[1m(INFO)[0m [1m[2025-01-23 14:57:23][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 117)]: Categorising Disease: Hypertension
+[1m(INFO)[0m [1m[2025-01-23 14:57:23][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmpljhkcepg.csv
+[1m(INFO)[0m [1m[2025-01-23 14:57:26][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-23 14:57:26][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-23 15:03:51][0m [1m[Thread: MainThread][0m [extract_study_title_entities(Line: 200)]: Starting study title extraction for: Clinical Trial in Patients With Hypertension and Left Ventricular Dysfunction
+[1m(INFO)[0m [1m[2025-01-23 15:03:51][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 115)]: Extracting Entities from study title: Clinical Trial in Patients With Hypertension and Left Ventricular Dysfunction
+[1m(INFO)[0m [1m[2025-01-23 15:03:51][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmpczd3_nke.csv
+[1m(INFO)[0m [1m[2025-01-23 15:03:54][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-23 15:03:54][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-23 15:03:54][0m [1m[Thread: MainThread][0m [classify_disease(Line: 204)]: Classifying Disease from Study Title
+[1m(INFO)[0m [1m[2025-01-23 15:03:54][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT distinct disease FROM clinicalstudy.conditions;
+[1m(INFO)[0m [1m[2025-01-23 15:03:54][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 3 results
+[1m(INFO)[0m [1m[2025-01-23 15:03:54][0m [1m[Thread: MainThread][0m [classify_disease(Line: 209)]: Initializing LLM
+[1m(INFO)[0m [1m[2025-01-23 15:03:54][0m [1m[Thread: MainThread][0m [classify_disease(Line: 213)]: Running LLM classification
+[1m(INFO)[0m [1m[2025-01-23 15:03:56][0m [1m[Thread: MainThread][0m [classify_disease(Line: 221)]: Disease classification completed: Hypertension
+[1m(INFO)[0m [1m[2025-01-23 15:03:56][0m [1m[Thread: MainThread][0m [getDiseaseDetails(Line: 266)]: Disease found in study title: Hypertension
+[1m(INFO)[0m [1m[2025-01-23 15:03:56][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT Disease_Category, Examples FROM clinicalstudy.diseasecategory WHERE Disease = 'Hypertension';
+[1m(INFO)[0m [1m[2025-01-23 15:03:56][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 5 results
+[1m(INFO)[0m [1m[2025-01-23 15:03:56][0m [1m[Thread: MainThread][0m [getDiseaseDetailsPrompt(Line: 227)]: Generating Disease Details Prompt...
+[1m(INFO)[0m [1m[2025-01-23 15:03:56][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 117)]: Categorising Disease: Hypertension
+[1m(INFO)[0m [1m[2025-01-23 15:03:56][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmpxnys1wiu.csv
+[1m(INFO)[0m [1m[2025-01-23 15:03:58][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-23 15:03:58][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-23 15:07:00][0m [1m[Thread: MainThread][0m [extract_study_title_entities(Line: 200)]: Starting study title extraction for: Clinical Trial in Patients With Hypertension and Left Ventricular Dysfunction
+[1m(INFO)[0m [1m[2025-01-23 15:07:00][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 115)]: Extracting Entities from study title: Clinical Trial in Patients With Hypertension and Left Ventricular Dysfunction
+[1m(INFO)[0m [1m[2025-01-23 15:07:00][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmp_s9lmum0.csv
+[1m(INFO)[0m [1m[2025-01-23 15:07:02][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-23 15:07:02][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-23 15:07:02][0m [1m[Thread: MainThread][0m [classify_disease(Line: 204)]: Classifying Disease from Study Title
+[1m(INFO)[0m [1m[2025-01-23 15:07:02][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT distinct disease FROM clinicalstudy.conditions;
+[1m(INFO)[0m [1m[2025-01-23 15:07:02][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 3 results
+[1m(INFO)[0m [1m[2025-01-23 15:07:02][0m [1m[Thread: MainThread][0m [classify_disease(Line: 209)]: Initializing LLM
+[1m(INFO)[0m [1m[2025-01-23 15:07:04][0m [1m[Thread: MainThread][0m [classify_disease(Line: 213)]: Running LLM classification
+[1m(INFO)[0m [1m[2025-01-23 15:07:05][0m [1m[Thread: MainThread][0m [classify_disease(Line: 221)]: Disease classification completed: Hypertension
+[1m(INFO)[0m [1m[2025-01-23 15:07:05][0m [1m[Thread: MainThread][0m [getDiseaseDetails(Line: 266)]: Disease found in study title: Hypertension
+[1m(INFO)[0m [1m[2025-01-23 15:07:05][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT Disease_Category, Examples FROM clinicalstudy.diseasecategory WHERE Disease = 'Hypertension';
+[1m(INFO)[0m [1m[2025-01-23 15:07:05][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 5 results
+[1m(INFO)[0m [1m[2025-01-23 15:07:05][0m [1m[Thread: MainThread][0m [getDiseaseDetailsPrompt(Line: 227)]: Generating Disease Details Prompt...
+[1m(INFO)[0m [1m[2025-01-23 15:07:05][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 117)]: Categorising Disease: Hypertension
+[1m(INFO)[0m [1m[2025-01-23 15:07:05][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmpqozf7z49.csv
+[1m(INFO)[0m [1m[2025-01-23 15:07:08][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-23 15:07:08][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
