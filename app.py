@@ -49,7 +49,7 @@ async def get_nct_number():
     if conn is None:
         raise HTTPException(status_code=503, detail="Database connection failed.")
     try:
-        query = "SELECT DISTINCT(NCT_Number) FROM embeddings"
+        query = "SELECT DISTINCT(NCT_Number) FROM embedding"
         df_saved = pd.read_sql(query, conn)
 
         distinct_nct_numbers = df_saved['NCT_Number'].tolist()
