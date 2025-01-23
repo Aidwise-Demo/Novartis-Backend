@@ -60,10 +60,14 @@ async def get_nct_number():
         conn.close()
 
 
-@app.get("/api/novartis/trial_details")
-async def get_trial_details(nctNumber: str):
-    if nctNumber.lower() == "not available":
-        # Return an empty JSON structure with keys set to empty values
+@app.post("/api/novartis/trial_details")
+async def get_trial_details(request: Request):
+    # Parse the JSON payload from the request body
+    payload = await request.json()
+    nctNumber = payload.get("nctNumber")
+
+    # Handle the case where nctNumber is "not available"
+    if not nctNumber or nctNumber.lower() == "not available":
         empty_trial_details = {
             "studyTitle": "",
             "primaryOutcomeMeasures": "",
@@ -73,11 +77,13 @@ async def get_trial_details(nctNumber: str):
         }
         return JSONResponse(content={"trialDetails": [empty_trial_details]})
 
+    # Connect to the database
     conn = get_db_connection()
     if conn is None:
         raise HTTPException(status_code=503, detail="Database connection failed.")
 
     try:
+        # Query the database for trial details
         query = """
             SELECT 
                 Study_Title, 
@@ -108,15 +114,20 @@ async def get_trial_details(nctNumber: str):
         conn.close()
 
 
-@app.get("/api/novartis/top_trials")
-async def get_top_trials(
-        nctNumber: str = None,
-        studyTitle: str = None,
-        primaryOutcomeMeasures: str = None,
-        secondaryOutcomeMeasures: str = None,
-        inclusionCriteria: str = None,
-        exclusionCriteria: str = None
-):
+@app.post("/api/novartis/top_trials")
+async def get_top_trials(request: Request):
+    # Parse the JSON payload from the request body
+    payload = await request.json()
+
+    # Extract parameters from the payload
+    nctNumber = payload.get("nctNumber")
+    studyTitle = payload.get("studyTitle")
+    primaryOutcomeMeasures = payload.get("primaryOutcomeMeasures")
+    secondaryOutcomeMeasures = payload.get("secondaryOutcomeMeasures")
+    inclusionCriteria = payload.get("inclusionCriteria")
+    exclusionCriteria = payload.get("exclusionCriteria")
+
+    # Ensure at least one argument is provided
     if all(arg is None for arg in [
         studyTitle,
         primaryOutcomeMeasures,
@@ -140,39 +151,51 @@ async def get_top_trials(
     if conn is None:
         raise HTTPException(status_code=503, detail="Database connection failed.")
 
-    # Convert column names to camelCase
-    df.columns = [
-        "nctNumber", "studyTitle", "primaryOutcomeMeasures", "secondaryOutcomeMeasures",
-        "inclusionCriteria", "exclusionCriteria", "disease", "drug", "drugSimilarity",
-        "inclusionCriteriaSimilarity", "exclusionCriteriaSimilarity",
-        "studyTitleSimilarity", "primaryOutcomeMeasuresSimilarity",
-        "secondaryOutcomeMeasuresSimilarity", "overallSimilarity"
-    ]
+    try:
+        # Convert column names to camelCase
+        df.columns = [
+            "nctNumber", "studyTitle", "primaryOutcomeMeasures", "secondaryOutcomeMeasures",
+            "inclusionCriteria", "exclusionCriteria", "disease", "drug", "drugSimilarity",
+            "inclusionCriteriaSimilarity", "exclusionCriteriaSimilarity",
+            "studyTitleSimilarity", "primaryOutcomeMeasuresSimilarity",
+            "secondaryOutcomeMeasuresSimilarity", "overallSimilarity"
+        ]
 
-    # Convert DataFrame to a list of dictionaries
-    trials_list = df.to_dict(orient="records")
-    response = json.dumps(trials_list)
-    # Insert into the database
-    insert_db(
-        nctNumber, studyTitle, primaryOutcomeMeasures, secondaryOutcomeMeasures,
-        inclusionCriteria, exclusionCriteria, response, conn
-    )
+        # Convert DataFrame to a list of dictionaries
+        trials_list = df.to_dict(orient="records")
+        response = json.dumps(trials_list)
 
-    # Filter the results to return only nctNumber, studyTitle, and overallSimilarity
-    filtered_trials_list = [
-        {
-            "nctNumber": trial["nctNumber"],
-            "studyTitle": trial["studyTitle"],
-            "overallSimilarity": trial["overallSimilarity"]
-        }
-        for trial in trials_list
-    ]
+        # Insert into the database
+        insert_db(
+            nctNumber, studyTitle, primaryOutcomeMeasures, secondaryOutcomeMeasures,
+            inclusionCriteria, exclusionCriteria, response, conn
+        )
 
-    # Return the filtered result as JSON
-    return JSONResponse(content={"trials": filtered_trials_list})
+        # Filter the results to return only nctNumber, studyTitle, and overallSimilarity
+        filtered_trials_list = [
+            {
+                "nctNumber": trial["nctNumber"],
+                "studyTitle": trial["studyTitle"],
+                "overallSimilarity": trial["overallSimilarity"]
+            }
+            for trial in trials_list
+        ]
 
-@app.get("/api/novartis/particular_trial")
-async def get_particular_trial(nctNumber: str):
+        # Return the filtered result as JSON
+        return JSONResponse(content={"trials": filtered_trials_list})
+    finally:
+        conn.close()
+
+@app.post("/api/novartis/particular_trial")
+async def get_particular_trial(request: Request):
+    # Parse the JSON payload from the request body
+    payload = await request.json()
+
+    # Extract `nctNumber` from the payload
+    nctNumber = payload.get("nctNumber")
+    if not nctNumber:
+        raise HTTPException(status_code=400, detail="nctNumber is required.")
+
     conn = get_db_connection()
     if conn is None:
         raise HTTPException(status_code=503, detail="Database connection failed.")
