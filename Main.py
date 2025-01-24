@@ -1,30 +1,52 @@
 import pandas as pd
 import math
 import time  # For time measurement
-from entityExtraction import StudyTitle, LLM
-from phrasesTagging import tag_dataframe_with_phrases
-from embeddingGeneration import process_and_generate_embeddings
-from similarityCheck import find_top_similar_trials
-from aggregation import similarity_aggregation
+from entity_extractor import entity_extraction
+from phrases_extractor import tag_dataframe_with_phrases
+from embedding_processor import process_and_generate_embeddings
+from find_similar_trials import find_top_similar_trials
+from score_aggregation import similarity_aggregation
 import os
 from dotenv import load_dotenv
+from fill_na_nan import replace_none_nan_with_na
 
+# Load environment variables from the .env file
 load_dotenv()
 
-# Function to replace None and nan with "NA"
-def replace_none_nan_with_na(value):
-    if value is None or (isinstance(value, float) and math.isnan(value)):
-        return "NA"
-    return value
 
-def trials_extraction(NCT_Number=None, Study_Title=None, Primary_Outcome_Measures=None, Secondary_Outcome_Measures=None,
-                      Inclusion_Criteria=None,
-                      Exclusion_Criteria=None):
-    if all(arg is None for arg in
-           [Study_Title, Primary_Outcome_Measures, Secondary_Outcome_Measures, Inclusion_Criteria, Exclusion_Criteria]):
+def trials_extraction(
+        NCT_Number=None,
+        Study_Title=None,
+        Primary_Outcome_Measures=None,
+        Secondary_Outcome_Measures=None,
+        Inclusion_Criteria=None,
+        Exclusion_Criteria=None
+):
+    """
+    Extracts clinical trial data, processes embeddings, and finds top similar trials.
+
+    Parameters:
+    - NCT_Number (str or None): Clinical trial identifier.
+    - Study_Title (str or None): Title of the study.
+    - Primary_Outcome_Measures (str or None): Primary outcome measures.
+    - Secondary_Outcome_Measures (str or None): Secondary outcome measures.
+    - Inclusion_Criteria (str or None): Inclusion criteria for the trial.
+    - Exclusion_Criteria (str or None): Exclusion criteria for the trial.
+
+    Returns:
+    - final_similarity (pd.DataFrame): A DataFrame containing aggregated similarity results.
+
+    Raises:
+    - ValueError: If none of the study parameters are provided.
+    """
+
+    # Validate input: Ensure at least one argument is provided
+    if all(arg is None for arg in [
+        Study_Title, Primary_Outcome_Measures, Secondary_Outcome_Measures, Inclusion_Criteria, Exclusion_Criteria
+    ]):
         raise ValueError("At least one argument must be provided.")
 
-    # Replace None with "NA" in input arguments
+    # Replace None or NaN values with "NA" in input arguments
     NCT_Number = replace_none_nan_with_na(NCT_Number)
     Study_Title = replace_none_nan_with_na(Study_Title)
     Primary_Outcome_Measures = replace_none_nan_with_na(Primary_Outcome_Measures)
@@ -32,21 +54,20 @@ def trials_extraction(NCT_Number=None, Study_Title=None, Primary_Outcome_Measure
     Inclusion_Criteria = replace_none_nan_with_na(Inclusion_Criteria)
     Exclusion_Criteria = replace_none_nan_with_na(Exclusion_Criteria)
 
-    # Extract entities
-    # extracted_entities = extract_study_title_entities(Study_Title)
-    llm = LLM(apiKey=os.getenv("OPENAI_API_KEY_MAYANK_AIDWISE_DEMO"))
-    studyTitleProcessor = StudyTitle(studyTitle=Study_Title, llm=llm)
-    extracted_entities = studyTitleProcessor.extractEntities()
-    print(extracted_entities)
+    # Step 1: Entity extraction from Study Title using LLM
+    extracted_entities = entity_extraction(Study_Title)
 
-    # Replace nan with "NA" for all relevant fields in extracted entities
+    # Replace None or NaN in extracted entities with "NA"
     disease = replace_none_nan_with_na(extracted_entities['Disease'])
     disease_category = replace_none_nan_with_na(extracted_entities['Disease_Category'])
     drug = replace_none_nan_with_na(extracted_entities['Study_Title_Entities']['Drug'])
     trial_phase = replace_none_nan_with_na(extracted_entities['Study_Title_Entities']['Trial Phase'])
     population_segment = replace_none_nan_with_na(extracted_entities['Study_Title_Entities']['Population Segment'])
 
-    # Create a dictionary for DataFrame
+    if disease in [None, "NA", "nan"]:
+        return "The model is trained on Ulcerative Colitis, Hypertension, and Alzheimer. Please provide relevant data for these diseases."
+
+    # Step 2: Create a DataFrame with trial information
     data = {
         'NCT_Number': [NCT_Number],
         'Study_Title': [Study_Title],
@@ -60,38 +81,19 @@ def trials_extraction(NCT_Number=None, Study_Title=None, Primary_Outcome_Measure
         'Trial_Phase': [trial_phase],
         'Population_Segment': [population_segment]
     }
+    df = pd.DataFrame(data)  # Convert dictionary to a DataFrame
 
-    # Convert to DataFrame
-    df = pd.DataFrame(data)
-
+    # Step 3: Tag the DataFrame with relevant phrases
     tagged_df = tag_dataframe_with_phrases(df, disease)
 
+    # Step 4: Generate embeddings for the tagged DataFrame
     embeddings_df = process_and_generate_embeddings(tagged_df)
 
+    # Step 5: Find top similar trials based on embeddings
     similarity_df = find_top_similar_trials(embeddings_df, disease)
 
+    # Step 6: Aggregate similarity results for better interpretability
     final_similarity = similarity_aggregation(similarity_df)
 
-    # Save the DataFrame to a file
-    final_similarity.to_excel('output_file.xlsx', index=False)
-    print(final_similarity.columns)
+    # Return the final similarity DataFrame
     return final_similarity
-
-
-# Timing the execution
-# if __name__ == "__main__":
-#     start_time = time.time()
-#
-#     NCT = "1235"
-#     study_title = "Safety and Efficacy of Deep Wave Trabeculoplasty (DWT) in Primary Ocular Hypertension"
-#     primary_outcome = "Percent decrease in IOP and change in dependence on IOP-lowering medications from baseline, 6 months|Intra-procedural and post-procedural adverse events, 6 months"
-#     secondary_outcome = "NA"
-#     inclusion = "Male or female subjects, 18 years or older.~* Subjects diagnosed with either POAG or OHT in both eyes. The diagnosis of POAG must include evidence of:~  1. Optic disc or retinal nerve fiber layer structural abnormalities (substantiated by OCT); and/or~ 2..."
-#     exclusion = "NA"
-#
-#     df = trials_extraction(NCT, study_title, primary_outcome, secondary_outcome, inclusion, exclusion)
-#
-#     end_time = time.time()
-#     print(f"Time taken to run trials_extraction: {end_time - start_time:.2f} seconds")
-#
-#     print(df)
