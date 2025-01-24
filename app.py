@@ -104,8 +104,8 @@ async def get_top_trials(request: Request):
     # Extract parameters from payload
     nctNumber = payload.get("nctNumber")
     studyTitle = payload.get("studyTitle")
-    primaryOutcomeMeasures = payload.get("primaryOutcomeMeasures")
-    secondaryOutcomeMeasures = payload.get("secondaryOutcomeMeasures")
+    primaryOutcomeMeasures = payload.get("primaryOutcomeMeasure")
+    secondaryOutcomeMeasures = payload.get("secondaryOutcomeMeasure")
     inclusionCriteria = payload.get("inclusionCriteria")
     exclusionCriteria = payload.get("exclusionCriteria")
 
@@ -129,7 +129,6 @@ async def get_top_trials(request: Request):
             inclusionCriteria,
             exclusionCriteria
         )
-        print(result)
         # Check if result is a string (error message from the model)
         if isinstance(result, str):
             return JSONResponse(
