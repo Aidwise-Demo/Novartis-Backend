@@ -102,7 +102,7 @@ async def get_top_trials(request: Request):
     payload = await request.json()  # Parse the incoming JSON payload
 
     # Extract parameters from payload
-    nctNumber = payload.get("nctNumber")
+    nctNumber = payload.get("nctCode")
     studyTitle = payload.get("studyTitle")
     primaryOutcomeMeasures = payload.get("primaryOutcome")
     secondaryOutcomeMeasures = payload.get("secondaryOutcome")
