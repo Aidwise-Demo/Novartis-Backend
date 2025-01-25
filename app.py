@@ -104,8 +104,8 @@ async def get_top_trials(request: Request):
     # Extract parameters from payload
     nctNumber = payload.get("nctNumber")
     studyTitle = payload.get("studyTitle")
-    primaryOutcomeMeasures = payload.get("primaryOutcomeMeasure")
-    secondaryOutcomeMeasures = payload.get("secondaryOutcomeMeasure")
+    primaryOutcomeMeasures = payload.get("primaryOutcome")
+    secondaryOutcomeMeasures = payload.get("secondaryOutcome")
     inclusionCriteria = payload.get("inclusionCriteria")
     exclusionCriteria = payload.get("exclusionCriteria")
 
