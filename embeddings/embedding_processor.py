@@ -1,5 +1,5 @@
 import pandas as pd
-from embedding_generator import generate_input_embeddings
+from embeddings.embedding_generator import generate_input_embeddings
 
 def process_and_generate_embeddings(input_data):
     """

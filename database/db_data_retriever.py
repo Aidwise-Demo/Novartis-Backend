@@ -1,5 +1,5 @@
 import pandas as pd
-from mysql_connector import get_db_connection
+from database.mysql_connector import get_db_connection
 
 def load_table_from_db(table_name, params=None):
     """

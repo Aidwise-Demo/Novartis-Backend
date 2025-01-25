@@ -1,5 +1,5 @@
-from study_title_processing import StudyTitle  # Import the StudyTitle class for processing study titles
-from llm_handler import LLM  # Import the LLM class for interacting with the language model
+from extraction.study_title_processing import StudyTitle  # Import the StudyTitle class for processing study titles
+from llm.llm_handler import LLM  # Import the LLM class for interacting with the language model
 import os  # For interacting with the operating system (e.g., for reading environment variables)
 from dotenv import load_dotenv  # For loading environment variables from a .env file
 

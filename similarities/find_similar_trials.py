@@ -1,6 +1,6 @@
 import pandas as pd
-from similarity_calculator import calculate_similarity
-from db_data_retriever import load_table_from_db
+from similarities.similarity_calculator import calculate_similarity
+from database.db_data_retriever import load_table_from_db
 
 
 def find_top_similar_trials(input_df, disease):
@@ -9,7 +9,7 @@ def find_top_similar_trials(input_df, disease):
     scores with database records for the specified disease.
 
     Args:
-        input_df (pd.DataFrame): DataFrame containing the input trial data.
+        input_df (pd.DataFrame): DataFrame containing the input trial data (single row).
         disease (str): The disease for which the trial data is processed.
 
     Returns:
@@ -26,17 +26,21 @@ def find_top_similar_trials(input_df, disease):
         print("No data found in the database for the specified disease.")
         return pd.DataFrame()  # Return an empty DataFrame if no data is found
 
-    # Step 2: Define the columns to calculate similarity for
+    # Step 2: Exclude the row in db_data that matches the NCT_Number from input_df
+    input_nct_number = input_df['NCT_Number'].iloc[0]  # Assuming input_df has a single row
+    db_data = db_data[db_data['NCT_Number'] != input_nct_number]
+
+    # Step 3: Define the columns to calculate similarity for
     columns_to_embed = [
         'Drug', 'Trial_Phase', 'Population_Segment', 'Disease_Category', 'Primary_Phrases',
         'Secondary_Phrases', 'Inclusion_Phrases', 'Exclusion_Phrases', 'IAge', 'IGender',
         'EAge', 'EGender'
     ]
 
-    # Step 3: Calculate cosine similarity between input data and database records
+    # Step 4: Calculate cosine similarity between input data and database records
     similarities = calculate_similarity(input_df, db_data, columns_to_embed)
 
-    # Step 4: Add calculated similarity scores to the original database data
-    result_df = pd.concat([db_data, pd.DataFrame(similarities)], axis=1)
+    # Step 5: Add calculated similarity scores to the original database data
+    result_df = pd.concat([db_data.reset_index(drop=True), pd.DataFrame(similarities)], axis=1)
 
     return result_df

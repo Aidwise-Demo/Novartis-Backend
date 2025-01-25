@@ -1,8 +1,8 @@
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-from db_history_loader import insert_db
-from mysql_connector import get_db_connection
+from database.db_history_loader import insert_db
+from database.mysql_connector import get_db_connection
 from Main import trials_extraction
 import json
 import pandas as pd

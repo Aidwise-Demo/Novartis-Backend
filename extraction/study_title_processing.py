@@ -1,9 +1,9 @@
 import logging
-from typing import Dict, List, Union, Any, Optional
+from typing import Dict, List, Any, Optional
 from WrappedLLM import Output, Initialize as ini
 from WrappedLLM.LLMModels import LLM_MODELS
-from llm_handler import LLM
-from query_executor import executeQuery
+from llm.llm_handler import LLM
+from utils.query_executor import executeQuery
 
 # Logger configuration
 logger = logging.getLogger('StudyTitleExtraction')
@@ -20,7 +20,7 @@ console_handler.setFormatter(formatter)
 logger.addHandler(console_handler)
 
 # Create file handler
-file_handler = logging.FileHandler('study_title_extraction.log')
+file_handler = logging.FileHandler('../study_title_extraction.log')
 file_handler.setFormatter(formatter)
 logger.addHandler(file_handler)
 

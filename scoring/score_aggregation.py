@@ -1,8 +1,8 @@
 import pandas as pd
-from score_cleaning import update_similarity_on_unknown
-from weight_normalization import adjust_weights_based_on_unknown
+from scoring.score_cleaning import update_similarity_on_unknown, update_unknown_to_na
+from scoring.weight_normalization import adjust_weights_based_on_unknown
 
-def similarity_aggregation(df):
+def similarity_aggregation(df, input_df, NCT_Number = None):
     # Step 1: Drop unnecessary columns containing embeddings
     columns_to_drop = [
         'Drug_embeddings', 'Trial_Phase_embeddings', 'Population_Segment_embeddings',
@@ -11,6 +11,16 @@ def similarity_aggregation(df):
         'IAge_embeddings', 'IGender_embeddings', 'EAge_embeddings', 'EGender_embeddings'
     ]
     df.drop(columns=columns_to_drop, inplace=True)  # Drop the embedding columns
+    input_df.drop(columns=columns_to_drop, inplace=True)
+    input_df.fillna("unknown")
+
+    missing_columns = [col for col in df.columns if col not in input_df.columns]
+
+    # Step 2: Add missing columns to `input_df` with a default value of 1
+    for col in missing_columns:
+        input_df[col] = 1
+
+    df = pd.concat([df, input_df], ignore_index=True)
 
     # Step 2: Calculate Inclusion and Exclusion Criteria Similarities
     df['Inclusion_Criteria_similarity'] = (
@@ -34,7 +44,7 @@ def similarity_aggregation(df):
 
     # Step 4: Recalculate Overall Similarity
     # Load weights and normalize
-    weights_df = pd.read_excel("weights.xlsx")  # Replace with the actual file path
+    weights_df = pd.read_excel("scoring/weights.xlsx")  # Replace with the actual file path
     weights_df['Normalized_Weight'] = weights_df['Weight'] / weights_df['Weight'].sum()
     weights_dict = weights_df.set_index('Column_Name')['Normalized_Weight'].to_dict()
 
@@ -50,14 +60,29 @@ def similarity_aggregation(df):
     # Sort DataFrame in descending order based on Overall_similarity
     df = df.sort_values(by="Overall_similarity", ascending=False)
 
-    # Step 5: Normalize Weights and Recalculate After Handling Unknowns
-    first_row_df = df.iloc[0:1].reset_index(drop=True)
-    df = df.iloc[1:].reset_index(drop=True)
+    if NCT_Number == "None":
+        # If NCT_Number is None, take the first row of the DataFrame
+        first_row_df = df.iloc[0:1].reset_index(drop=True)
+        first_row_df = first_row_df.fillna("unknown")
+        df = df.iloc[1:].reset_index(drop=True)
+
+    else:
+        # Find the row where 'NCT_Number' matches the input
+        first_row_df = df[df["NCT_Number"] == NCT_Number]
+
+        if first_row_df.empty:
+            print(f"No matching row found for NCT_Number: {NCT_Number}")
+        else:
+            # Fill missing values in the first row with "unknown"
+            first_row_df = first_row_df.replace('', 'unknown').fillna('unknown')
+
+            # Drop the matching row from the DataFrame
+            df = df.drop(first_row_df.index).reset_index(drop=True)
 
     # Update similarity columns for "unknown" handling
     df = update_similarity_on_unknown(df)
     normalized_weights_dict = adjust_weights_based_on_unknown(first_row_df, weights_dict)
-    df.to_excel("output1.xlsx", index=False)
+
     # Recalculate similarity columns based on the updated weights
     similarity_columns = [
         col for col in normalized_weights_dict.keys() if col in df.columns
@@ -81,6 +106,7 @@ def similarity_aggregation(df):
 
     # Step 6: Select the Top 10 Rows Based on Overall Similarity
     top_10_df = df.nlargest(10, 'Overall_similarity')
+    top_10_df = update_unknown_to_na(first_row_df, top_10_df)
 
     # Drop unnecessary columns from the top 10 DataFrame
     columns_to_drop = [
@@ -94,6 +120,5 @@ def similarity_aggregation(df):
     ]
     top_10_df.drop(columns=columns_to_drop, inplace=True)
 
-    top_10_df.to_excel("output.xlsx", index=False)
 
     return top_10_df

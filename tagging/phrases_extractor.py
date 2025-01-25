@@ -1,7 +1,7 @@
 import pandas as pd
-from metadata_extraction import tag_age_gender  # Function for tagging additional metadata
-from phrases_tagging import tag_phrases  # Function for tagging individual phrases
-from db_data_retriever import load_table_from_db  # Function for loading data from a database
+from extraction.metadata_extraction import tag_age_gender  # Function for tagging additional metadata
+from tagging.phrases_tagging import tag_phrases  # Function for tagging individual phrases
+from database.db_data_retriever import load_table_from_db  # Function for loading data from a database
 
 
 def process_keywords(keywords_series):

@@ -25,7 +25,7 @@ console_handler.setFormatter(formatter)
 logger.addHandler(console_handler)
 
 # Create file handler
-file_handler = logging.FileHandler('study_title_extraction.log')
+file_handler = logging.FileHandler('../study_title_extraction.log')
 file_handler.setFormatter(formatter)
 logger.addHandler(file_handler)
 

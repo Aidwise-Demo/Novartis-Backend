@@ -1,14 +1,11 @@
 import pandas as pd
-import math
-import time  # For time measurement
-from entity_extractor import entity_extraction
-from phrases_extractor import tag_dataframe_with_phrases
-from embedding_processor import process_and_generate_embeddings
-from find_similar_trials import find_top_similar_trials
-from score_aggregation import similarity_aggregation
-import os
+from extraction.entity_extractor import entity_extraction
+from tagging.phrases_extractor import tag_dataframe_with_phrases
+from embeddings.embedding_processor import process_and_generate_embeddings
+from similarities.find_similar_trials import find_top_similar_trials
+from scoring.score_aggregation import similarity_aggregation
 from dotenv import load_dotenv
-from fill_na_nan import replace_none_nan_with_na
+from utils.fill_na_nan import replace_none_nan_with_na
 
 # Load environment variables from the .env file
 load_dotenv()
@@ -93,7 +90,7 @@ def trials_extraction(
     similarity_df = find_top_similar_trials(embeddings_df, disease)
 
     # Step 6: Aggregate similarity results for better interpretability
-    final_similarity = similarity_aggregation(similarity_df)
+    final_similarity = similarity_aggregation(similarity_df, embeddings_df, NCT_Number)
 
     # Return the final similarity DataFrame
     return final_similarity
