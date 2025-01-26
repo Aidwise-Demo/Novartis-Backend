@@ -108,6 +108,17 @@ Designing clinical trial protocols is a complex, time-intensive process, often l
 │   ├── weight_normalization.py    # Normalizes weights
 ├── utils
 │   ├── query_executor.py      # Executes LLM queries
+├── PreProcessedData
+│   ├── db_data_loader.py        # Load dataset in database
+│   ├── EDA.py       # Cleans and processes data
+│   ├── pre_processing.py      # Pre Process data 
+│   ├── keyword_corpus.py      # Generates keyword corpus for outcome measures & criteria
+│   ├── phrases_tagging.py   # Tagging phrases
+│   ├── embeddings_processor_and_generator.py # Generates embeddings and saves to DB
+├── Single-Entity-Extraction
+│   ├── EntityExtractionModels.py # Calls hosted API for entity extraction
+│   ├── llm_entity_handler.py   # Handles entity extraction using LLM
+│   ├── GPTPrompts.py      # Prompts for generating responses from LLM
 └── README.md                  # Project documentation
 ```
 ---
