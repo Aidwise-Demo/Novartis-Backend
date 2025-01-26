@@ -389,7 +389,7 @@ async def get_top_trials(request: Request):
         )
 
         # Return success response
-        return JSONResponse(content={"trials": "Saved Successfully"}, status_code=200)
+        return JSONResponse(content={"trials": trials_list}, status_code=200)
 
     except ValueError as e:
         return JSONResponse(content={"message": str(e)}, status_code=400)

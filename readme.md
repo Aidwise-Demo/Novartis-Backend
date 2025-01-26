@@ -1,4 +1,4 @@
-# Clinical Trials Extraction and Similarity Scoring System
+# Clinical Trials Semantic-Based Similarity Scoring System
 
 This repository implements a pipeline for processing clinical trial data, extracting relevant entities, tagging information, generating embeddings, and calculating similarity scores. The system is built using **FastAPI** and integrates various modules for database interaction, natural language processing, and similarity scoring.
 
@@ -127,7 +127,7 @@ To set up the project locally:
 ---
 
 ## API Endpoints
-The following endpoints are available in the API:
+The following endpoints are available in the [API](https://api.novartis-backend.aidwise.in/):
 
 - **GET `/api/novartis/nct_numbers`**: Retrieves NCT numbers.
 - **POST `/api/novartis/trial_details`**: Submit trial details to be processed.
