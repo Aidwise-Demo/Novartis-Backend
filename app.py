@@ -302,3 +302,110 @@ async def get_history_input():
         return JSONResponse(content={"trialDetails": trial_details_camel_case})
     finally:
         conn.close()
+
+# Endpoint to fetch top trials for passing nct number only
+@app.post("/api/novartis/top_trials_nct")
+async def get_top_trials(request: Request):
+    try:
+        # Parse incoming JSON payload
+        payload = await request.json()
+        nctNumber = payload.get("nctNumber")
+
+        # Handle case where NCT number is not provided or invalid
+        if not nctNumber or nctNumber.lower() == "not available":
+            empty_trial_details = {
+                "studyTitle": "",
+                "primaryOutcomeMeasures": "",
+                "secondaryOutcomeMeasures": "",
+                "inclusionCriteria": "",
+                "exclusionCriteria": ""
+            }
+            return JSONResponse(content={"trialDetails": [empty_trial_details]}, status_code=200)
+
+        # Establish database connection
+        conn = get_db_connection()
+        if conn is None:
+            raise HTTPException(status_code=503, detail="Database connection failed.")
+
+        # Fetch trial details based on the NCT number
+        query = """
+            SELECT 
+                Study_Title, 
+                Primary_Outcome_Measures, 
+                Secondary_Outcome_Measures, 
+                Inclusion_Criteria, 
+                Exclusion_Criteria 
+            FROM clinicaltrials 
+            WHERE LOWER(NCT_Number) = %s
+        """
+        df_saved = pd.read_sql(query, conn, params=(nctNumber.lower(),))
+        if df_saved.empty:
+            raise HTTPException(status_code=404, detail="No trial found for the provided NCT number.")
+
+        # Extract details
+        studyTitle = df_saved["Study_Title"].iloc[0]
+        primaryOutcomeMeasures = df_saved["Primary_Outcome_Measures"].iloc[0]
+        secondaryOutcomeMeasures = df_saved["Secondary_Outcome_Measures"].iloc[0]
+        inclusionCriteria = df_saved["Inclusion_Criteria"].iloc[0]
+        exclusionCriteria = df_saved["Exclusion_Criteria"].iloc[0]
+
+        # Call trials_extraction function to process the data
+        result = trials_extraction(
+            nctNumber,
+            studyTitle,
+            primaryOutcomeMeasures,
+            secondaryOutcomeMeasures,
+            inclusionCriteria,
+            exclusionCriteria
+        )
+
+        # Handle error or limitation messages from the trials_extraction function
+        if isinstance(result, str):
+            return JSONResponse(content={"message": result}, status_code=200)
+
+        # Validate result format
+        if not isinstance(result, pd.DataFrame):
+            raise ValueError("Unexpected result type from trials_extraction. Expected a DataFrame.")
+
+        # Rename columns for consistency
+        result.columns = [
+            "nctNumber", "studyTitle", "primaryOutcomeMeasures", "secondaryOutcomeMeasures",
+            "inclusionCriteria", "exclusionCriteria", "disease", "drug", "drugSimilarity",
+            "inclusionCriteriaSimilarity", "exclusionCriteriaSimilarity",
+            "studyTitleSimilarity", "primaryOutcomeMeasuresSimilarity",
+            "secondaryOutcomeMeasuresSimilarity", "overallSimilarity"
+        ]
+
+        # Save result to Excel
+        result.to_excel(f"{nctNumber}.xlsx", index=False)
+
+        # Convert the DataFrame to a list of dictionaries
+        trials_list = result.to_dict(orient="records")
+
+        # Insert response data into the database
+        insert_db(
+            nctNumber, studyTitle, primaryOutcomeMeasures, secondaryOutcomeMeasures,
+            inclusionCriteria, exclusionCriteria, json.dumps(trials_list), conn
+        )
+
+        # Return success response
+        return JSONResponse(content={"trials": "Saved Successfully"}, status_code=200)
+
+    except ValueError as e:
+        return JSONResponse(content={"message": str(e)}, status_code=400)
+
+    except HTTPException as e:
+        raise e  # Let FastAPI handle HTTP exceptions
+
+    except Exception as e:
+        return JSONResponse(
+            content={"message": "An unexpected error occurred. Please try again later.", "error": str(e)},
+            status_code=500
+        )
+
+    finally:
+        # Close database connection if it was established
+        try:
+            conn.close()
+        except Exception:
+            pass

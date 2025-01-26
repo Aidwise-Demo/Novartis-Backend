@@ -1,0 +1,19 @@
+[1m(INFO)[0m [1m[2025-01-21 21:45:02][0m [1m[Thread: MainThread][0m [extract_study_title_entities(Line: 200)]: Starting study title extraction for: Single-Ascending-Dose Study of BIIB076 in Healthy Volunteers and Participants With Alzheimer's Disease
+[1m(INFO)[0m [1m[2025-01-21 21:45:02][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 115)]: Extracting Entities from study title: Single-Ascending-Dose Study of BIIB076 in Healthy Volunteers and Participants With Alzheimer's Disease
+[1m(INFO)[0m [1m[2025-01-21 21:45:02][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmpgviqg1df.csv
+[1m(INFO)[0m [1m[2025-01-21 21:45:07][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-21 21:45:07][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
+[1m(INFO)[0m [1m[2025-01-21 21:45:07][0m [1m[Thread: MainThread][0m [classify_disease(Line: 204)]: Classifying Disease from Study Title
+[1m(INFO)[0m [1m[2025-01-21 21:45:07][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT distinct disease FROM clinicalstudy.conditions;
+[1m(INFO)[0m [1m[2025-01-21 21:45:09][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 3 results
+[1m(INFO)[0m [1m[2025-01-21 21:45:09][0m [1m[Thread: MainThread][0m [classify_disease(Line: 209)]: Initializing LLM
+[1m(INFO)[0m [1m[2025-01-21 21:45:10][0m [1m[Thread: MainThread][0m [classify_disease(Line: 213)]: Running LLM classification
+[1m(INFO)[0m [1m[2025-01-21 21:45:11][0m [1m[Thread: MainThread][0m [classify_disease(Line: 221)]: Disease classification completed: Alzheimer
+[1m(INFO)[0m [1m[2025-01-21 21:45:11][0m [1m[Thread: MainThread][0m [getDiseaseDetails(Line: 266)]: Disease found in study title: Alzheimer
+[1m(INFO)[0m [1m[2025-01-21 21:45:11][0m [1m[Thread: MainThread][0m [execute_query(Line: 173)]: Executing query: SELECT Disease_Category, Examples FROM clinicalstudy.diseasecategory WHERE Disease = 'Alzheimer';
+[1m(INFO)[0m [1m[2025-01-21 21:45:11][0m [1m[Thread: MainThread][0m [execute_query(Line: 190)]: Query executed successfully, returned 5 results
+[1m(INFO)[0m [1m[2025-01-21 21:45:11][0m [1m[Thread: MainThread][0m [getDiseaseDetailsPrompt(Line: 227)]: Generating Disease Details Prompt...
+[1m(INFO)[0m [1m[2025-01-21 21:45:11][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 117)]: Categorising Disease: Alzheimer's Disease
+[1m(INFO)[0m [1m[2025-01-21 21:45:11][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 126)]: Created temporary CSV at: C:\Users\admin\AppData\Local\Temp\tmpifm5qq5z.csv
+[1m(INFO)[0m [1m[2025-01-21 21:45:16][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 143)]: Successfully received response from SEE endpoint
+[1m(INFO)[0m [1m[2025-01-21 21:45:16][0m [1m[Thread: MainThread][0m [query_SEE_endpoint(Line: 162)]: Successfully processed CSV response with 1 records
