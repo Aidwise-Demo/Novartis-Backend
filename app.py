@@ -109,16 +109,15 @@ async def get_top_trials(request: Request):
     inclusionCriteria = payload.get("inclusionCriteria")
     exclusionCriteria = payload.get("exclusionCriteria")
 
-    # Ensure at least one argument is provided
-    if all(arg is None for arg in [
+    # Ensure at least one argument is provided and not blank
+    if all(not arg for arg in [
         studyTitle,
         primaryOutcomeMeasures,
         secondaryOutcomeMeasures,
         inclusionCriteria,
         exclusionCriteria
     ]):
-        raise HTTPException(status_code=400, detail="At least one argument must be provided.")
-
+        raise HTTPException(status_code=400, detail="At least one argument must be provided and not blank.")
     # Call the trials_extraction function to get trial data
     try:
         result = trials_extraction(
@@ -131,10 +130,7 @@ async def get_top_trials(request: Request):
         )
         # Check if result is a string (error message from the model)
         if isinstance(result, str):
-            return JSONResponse(
-                content={"message": result},  # Return the model's limitation or error message
-                status_code=200
-            )
+            raise HTTPException(status_code=400, detail="The model is trained on Ulcerative Colitis, Hypertension, and Alzheimer. Please provide relevant data for these diseases.")
 
         # Ensure result is a DataFrame
         if not isinstance(result, pd.DataFrame):
