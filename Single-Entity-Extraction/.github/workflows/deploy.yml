@@ -1,0 +1,89 @@
+name: Deploy Single Entity Extraction API to VPS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  Deploy_to_VPS:
+    runs-on: ubuntu-latest
+    env:
+      VPS_DIRECTORY_AIDWISE_DEMO: ${{ secrets.VPS_DIRECTORY_AIDWISE_DEMO }}
+    
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Set up Python environment
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12.2'
+
+    - name: Set up SSH
+      run: |
+        mkdir -p ~/.ssh
+        echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
+        chmod 600 ~/.ssh/id_ed25519
+      env:
+        SSH_PRIVATE_KEY: |
+          -----BEGIN OPENSSH PRIVATE KEY-----
+          ${{ secrets.SSH_PRIVATE_KEY_AIDWISE_DEMO }}
+          -----END OPENSSH PRIVATE KEY-----
+
+    - name: Deploy Code to VPS
+      run: |
+        ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USERNAME_AIDWISE_DEMO }}@${{ secrets.VPS_IPADDRESS_AIDWISE_DEMO }} << 'EOF'
+          if [ -d "${{ env.VPS_DIRECTORY_AIDWISE_DEMO }}" ]; then
+            echo "Removing existing single-entity-extraction directory..."
+            rm -rf ${{ env.VPS_DIRECTORY_AIDWISE_DEMO }}
+          fi
+          echo "Creating single-entity-extraction directory..."
+          mkdir -p ${{ env.VPS_DIRECTORY_AIDWISE_DEMO }}
+        EOF
+        rsync -avz --exclude='.git' ./ ${{ secrets.VPS_USERNAME_AIDWISE_DEMO }}@${{ secrets.VPS_IPADDRESS_AIDWISE_DEMO }}:${{ env.VPS_DIRECTORY_AIDWISE_DEMO }}/
+
+    - name: Set up Python Virtual Environment on VPS
+      run: |
+        ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USERNAME_AIDWISE_DEMO }}@${{ secrets.VPS_IPADDRESS_AIDWISE_DEMO }} << 'EOF'
+          cd ${{ env.VPS_DIRECTORY_AIDWISE_DEMO }}
+          sudo apt-get update
+          sudo apt-get install -y python3-venv python3-pip
+          python3 -m venv venv
+          source venv/bin/activate
+          pip install --upgrade pip
+        EOF
+
+    - name: Build and Run Docker Container on VPS
+      run: |
+        ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USERNAME_AIDWISE_DEMO }}@${{ secrets.VPS_IPADDRESS_AIDWISE_DEMO }} << 'EOF'
+          cd ${{ env.VPS_DIRECTORY_AIDWISE_DEMO }}
+          
+          # Set environment variables
+          echo "VPS_EXPOSED_PORT_AIDWISE_DEMO=${{ secrets.VPS_EXPOSED_PORT_AIDWISE_DEMO }}" >> .env
+          echo "VPS_DIRECTORY_AIDWISE_DEMO=${{ env.VPS_DIRECTORY_AIDWISE_DEMO }}" >> .env
+
+          # Install Docker Compose if not installed
+          if ! command -v docker-compose &> /dev/null; then
+            sudo curl -L "https://github.com/docker/compose/releases/download/$(curl -s https://api.github.com/repos/docker/compose/releases/latest | jq -r .tag_name)/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+            sudo chmod +x /usr/local/bin/docker-compose
+          fi
+
+          # Stop running containers and clean up
+          docker-compose down || { echo 'Docker Compose down failed'; exit 1; }
+          docker image prune -f
+
+          # Build and start Docker container
+          docker-compose --env-file .env up --build -d || { echo 'Docker Compose up failed'; exit 1; }
+
+          # Wait and check container status
+          sleep 4
+          if ! docker ps | grep -q "single-entity-extraction"; then
+            echo "Container failed to start or exited unexpectedly."
+            docker-compose logs
+            exit 1
+          fi
+
+          echo "The container is running!"
+          echo "The Docker container can be accessed on port ${{ secrets.VPS_EXPOSED_PORT_AIDWISE_DEMO }}."
+        EOF

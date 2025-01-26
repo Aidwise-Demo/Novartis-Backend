@@ -1,0 +1,23 @@
+### Python ###
+__pycache__/
+*.py[cod]
+.env
+.venv/
+
+### Project specific ###
+logs/app.log
+output/
+debug/
+temp.py
+test.py
+try.py
+tets.py
+main.py
+testRate.py
+getUniqueFuzzy.py
+classifyDisease.py
+workflow.txt
+
+### Data files ###
+*.csv
+Primary_Outcome_200.csv
