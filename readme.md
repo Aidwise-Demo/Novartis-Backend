@@ -21,7 +21,7 @@ This repository implements a pipeline for processing clinical trial data, extrac
 
 ## Project Overview
 
-This project is designed to streamline the analysis and comparison of clinical trial data. The workflow involves multiple steps, from data retrieval to similarity scoring, using a modular and efficient pipeline.
+Designing clinical trial protocols is a complex, time-intensive process, often leading to delays in delivering effective treatments or even unsuccessful research outcomes. Leveraging past clinical trial data can streamline this process by providing relevant insights, minimizing errors, and improving efficiency. This involves extracting and analyzing unstructured textual data, such as study titles, primary and secondary outcome measures, and eligibility criteria, to identify meaningful patterns and subsets of trials. By doing so, researchers can expedite protocol design, reduce failure risks, and improve the overall quality of clinical trials.
 
 ---
 
@@ -121,20 +121,20 @@ To set up the project locally:
 2. **Clone the repository**  
    Clone the repository to your local machine:
    ```bash
-   git clone https://github.com/your-repository-url.git
+   git clone https://github.com/Aidwise-Demo/Novartis-Backend.git
    cd your-repository-folder
 
 ---
 
 ## API Endpoints
-The following endpoints are available in the [API](https://api.novartis-backend.aidwise.in/):
+The following endpoints are available in the API:
 
 - **GET `/api/novartis/nct_numbers`**: Retrieves NCT numbers.
 - **POST `/api/novartis/trial_details`**: Submit trial details to be processed.
 - **POST `/api/novartis/top_trials`**: Retrieve top trials based on certain criteria.
 - **POST `/api/novartis/particular_trial`**: Retrieve details for a specific trial.
 - **GET `/api/novartis/input_history`**: Retrieves the history of inputs made.
-- **POST `/api/novartis/top_trials_nct`**: This endpoint is used when setting up the system locally to fetch top trials based on NCT.
+- **POST `/api/novartis/top_trials_nct`**: This endpoint is used when setting up the system locally to fetch top trials based on NCT(nctNumber).
 
 ---
 
@@ -148,7 +148,7 @@ The following endpoints are available in the [API](https://api.novartis-backend.
 ---
 
 ## Contributors
-This project is maintained by **Aidwise Analytics Pvt Ltd**. The contributors are:
+This project is maintained by **Aidwise Analytica Pvt Ltd**. The contributors are:
 - **Mayank Jalan**
 - **Neha Luthra**
 - **Sharath Suram**
@@ -158,7 +158,11 @@ This project is maintained by **Aidwise Analytics Pvt Ltd**. The contributors ar
 ----
 
 ## Future Enhancements
-- Add support for additional trial data sources.
-- Improve processing speed and optimize the database queries.
-- Integrate a more advanced tagging mechanism for clinical trial keywords.
+- Scaling the solution to cover all diseases
+- Standardization of drugs based on therapeutic class.
+- Implementation of Shapley-based weightage for overall similarity score calculation.
+- Platform Scalability- Larger Dictionaries creation for various Entities
+- Data Enrichment to include Clinical Research Data beyond currently provided data
+- Self-Learning Modules to be deployed to continuously evolve based on newer data and data shifts
+- Protocol Writing could be enabled using the Platform leveraging various past studies and Outcomes
 - Provide user authentication and authorization for API access.
