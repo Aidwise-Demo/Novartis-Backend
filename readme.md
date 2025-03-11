@@ -159,7 +159,7 @@ The following endpoints are available in the API:
 ---
 
 ## Contributors
-This project is maintained by **Aidwise Analytica Pvt Ltd**. The contributors are:
+This project is maintained by **Aidwise Analytica Pvt Ltd**. The contributors are::
 - **Mayank Jalan**
 - **Neha Luthra**
 - **Sharath Suram**
